@@ -49,46 +49,6 @@ tracks/2/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_dfwrb"]
-resource_name = "correr"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("3_th2ev")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [12]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.13333334, 0.26666668, 0.4, 0.53333336, 0.6666667, 0.8, 0.93333334),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7]
-}
-
 [sub_resource type="Animation" id="Animation_bci0v"]
 resource_name = "deslizar"
 loop_mode = 1
@@ -209,6 +169,46 @@ tracks/2/keys = {
 "values": [0]
 }
 
+[sub_resource type="Animation" id="Animation_dfwrb"]
+resource_name = "correr"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_th2ev")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.26666668, 0.4, 0.53333336, 0.6666667, 0.8, 0.93333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dfwrb"]
 _data = {
 &"RESET": SubResource("Animation_yvlo0"),
@@ -240,3 +240,11 @@ shape = SubResource("CapsuleShape2D_7ii8e")
 libraries = {
 &"": SubResource("AnimationLibrary_dfwrb")
 }
+
+[node name="pared_derecha" type="RayCast2D" parent="jugador"]
+position = Vector2(588, 641)
+target_position = Vector2(27, 0)
+
+[node name="pared_izquierda" type="RayCast2D" parent="jugador"]
+position = Vector2(585, 641)
+target_position = Vector2(-31, 0)
