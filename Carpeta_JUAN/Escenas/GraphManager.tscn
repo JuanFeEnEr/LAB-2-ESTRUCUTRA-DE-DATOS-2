@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=3 uid="uid://j1hrn1o2blgj"]
+
+[ext_resource type="Script" uid="uid://di5rf1aul6dm2" path="res://Carpeta_JUAN/Codigos/GraphManager.gd" id="1_xdmuk"]
+[ext_resource type="PackedScene" uid="uid://vh2uci3l65xl" path="res://Carpeta_JUAN/Escenas/Node.tscn" id="2_bvj2y"]
+[ext_resource type="PackedScene" uid="uid://bc7rskvhvna81" path="res://Carpeta_JUAN/Escenas/Edge.tscn" id="3_u8hc4"]
+
+[node name="Graph Manager" type="Node2D"]
+script = ExtResource("1_xdmuk")
+
+[node name="Nodes" type="Node2D" parent="."]
+
+[node name="Node_S" parent="Nodes" instance=ExtResource("2_bvj2y")]
+position = Vector2(374, 140)
+node_id = "S"
+
+[node name="Node_A" parent="Nodes" instance=ExtResource("2_bvj2y")]
+position = Vector2(572, 223)
+node_id = "A"
+
+[node name="Node_B" parent="Nodes" instance=ExtResource("2_bvj2y")]
+position = Vector2(644, 135)
+node_id = "B"
+
+[node name="Node_C" parent="Nodes" instance=ExtResource("2_bvj2y")]
+position = Vector2(253, 248)
+node_id = "C"
+
+[node name="Node_D" parent="Nodes" instance=ExtResource("2_bvj2y")]
+position = Vector2(374, 140)
+node_id = "D"
+
+[node name="Node_T" parent="Nodes" instance=ExtResource("2_bvj2y")]
+position = Vector2(374, 140)
+node_id = "T"
+
+[node name="Edges" type="Node2D" parent="."]
+
+[node name="Edge_SA" parent="Edges" instance=ExtResource("3_u8hc4")]
+from_id = "S"
+to_id = "A"
+
+[node name="Edge_SB" parent="Edges" instance=ExtResource("3_u8hc4")]
+from_id = "S"
+to_id = "B"
+
+[node name="Edge_" parent="Edges" instance=ExtResource("3_u8hc4")]
+
+[node name="Edge5" parent="Edges" instance=ExtResource("3_u8hc4")]
+
+[node name="Edge4" parent="Edges" instance=ExtResource("3_u8hc4")]
+
+[node name="Edge3" parent="Edges" instance=ExtResource("3_u8hc4")]
+
+[node name="Edge2" parent="Edges" instance=ExtResource("3_u8hc4")]
