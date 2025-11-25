@@ -1,54 +1,78 @@
 [gd_scene load_steps=4 format=3 uid="uid://j1hrn1o2blgj"]
 
-[ext_resource type="Script" uid="uid://di5rf1aul6dm2" path="res://Carpeta_JUAN/Codigos/GraphManager.gd" id="1_xdmuk"]
+[ext_resource type="Script" uid="uid://cjpllfm2oc3o5" path="res://Carpeta_JUAN/Codigos/GraphManager.gd" id="1_xdmuk"]
 [ext_resource type="PackedScene" uid="uid://vh2uci3l65xl" path="res://Carpeta_JUAN/Escenas/Node.tscn" id="2_bvj2y"]
 [ext_resource type="PackedScene" uid="uid://bc7rskvhvna81" path="res://Carpeta_JUAN/Escenas/Edge.tscn" id="3_u8hc4"]
 
-[node name="Graph Manager" type="Node2D"]
+[node name="Main Scene" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(28.95032, 16.793018)
+mouse_filter = 2
+
+[node name="Graph Manager" type="Node2D" parent="."]
 script = ExtResource("1_xdmuk")
 
-[node name="Nodes" type="Node2D" parent="."]
+[node name="Nodes" type="Node2D" parent="Graph Manager"]
+z_index = 10
 
-[node name="Node_S" parent="Nodes" instance=ExtResource("2_bvj2y")]
-position = Vector2(374, 140)
+[node name="S" parent="Graph Manager/Nodes" instance=ExtResource("2_bvj2y")]
+position = Vector2(119, 348)
 node_id = "S"
 
-[node name="Node_A" parent="Nodes" instance=ExtResource("2_bvj2y")]
-position = Vector2(572, 223)
+[node name="A" parent="Graph Manager/Nodes" instance=ExtResource("2_bvj2y")]
+position = Vector2(306, 189)
 node_id = "A"
 
-[node name="Node_B" parent="Nodes" instance=ExtResource("2_bvj2y")]
-position = Vector2(644, 135)
+[node name="B" parent="Graph Manager/Nodes" instance=ExtResource("2_bvj2y")]
+position = Vector2(419, 486)
 node_id = "B"
 
-[node name="Node_C" parent="Nodes" instance=ExtResource("2_bvj2y")]
-position = Vector2(253, 248)
+[node name="C" parent="Graph Manager/Nodes" instance=ExtResource("2_bvj2y")]
+position = Vector2(720, 148)
 node_id = "C"
 
-[node name="Node_D" parent="Nodes" instance=ExtResource("2_bvj2y")]
-position = Vector2(374, 140)
+[node name="D" parent="Graph Manager/Nodes" instance=ExtResource("2_bvj2y")]
+position = Vector2(710, 414)
 node_id = "D"
 
-[node name="Node_T" parent="Nodes" instance=ExtResource("2_bvj2y")]
-position = Vector2(374, 140)
+[node name="T" parent="Graph Manager/Nodes" instance=ExtResource("2_bvj2y")]
+position = Vector2(1045, 308)
 node_id = "T"
 
-[node name="Edges" type="Node2D" parent="."]
+[node name="Edges" type="Node2D" parent="Graph Manager"]
 
-[node name="Edge_SA" parent="Edges" instance=ExtResource("3_u8hc4")]
+[node name="Edge_SA" parent="Graph Manager/Edges" instance=ExtResource("3_u8hc4")]
 from_id = "S"
 to_id = "A"
+capacity = 3
 
-[node name="Edge_SB" parent="Edges" instance=ExtResource("3_u8hc4")]
+[node name="Edge_SB" parent="Graph Manager/Edges" instance=ExtResource("3_u8hc4")]
 from_id = "S"
 to_id = "B"
+capacity = 4
 
-[node name="Edge_" parent="Edges" instance=ExtResource("3_u8hc4")]
+[node name="Edge_AC" parent="Graph Manager/Edges" instance=ExtResource("3_u8hc4")]
+from_id = "A"
+to_id = "C"
 
-[node name="Edge5" parent="Edges" instance=ExtResource("3_u8hc4")]
+[node name="Edge_BC" parent="Graph Manager/Edges" instance=ExtResource("3_u8hc4")]
+from_id = "B"
+to_id = "C"
 
-[node name="Edge4" parent="Edges" instance=ExtResource("3_u8hc4")]
+[node name="Edge_BD" parent="Graph Manager/Edges" instance=ExtResource("3_u8hc4")]
+from_id = "B"
+to_id = "D"
+capacity = 6
 
-[node name="Edge3" parent="Edges" instance=ExtResource("3_u8hc4")]
+[node name="Edge_CT" parent="Graph Manager/Edges" instance=ExtResource("3_u8hc4")]
+from_id = "C"
+to_id = "T"
+capacity = 5
 
-[node name="Edge2" parent="Edges" instance=ExtResource("3_u8hc4")]
+[node name="Edge_DT" parent="Graph Manager/Edges" instance=ExtResource("3_u8hc4")]
+from_id = "D"
+to_id = "T"
+capacity = 8
