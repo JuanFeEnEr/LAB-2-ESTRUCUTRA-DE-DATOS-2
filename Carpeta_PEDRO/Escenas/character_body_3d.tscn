@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bqlewellkdstj"]
 
-[ext_resource type="Script" uid="uid://cq8cb4qo4q6fe" path="res://Scripts/character_body_3d.gd" id="1_ft17k"]
-[ext_resource type="PackedScene" uid="uid://4rjqrgkdikrf" path="res://Diseños/freepolygon (004).FBX (1).FBX" id="2_im1f8"]
+[ext_resource type="Script" uid="uid://cq8cb4qo4q6fe" path="res://Carpeta_PEDRO/Scripts/character_body_3d.gd" id="1_ft17k"]
+[ext_resource type="PackedScene" uid="uid://4rjqrgkdikrf" path="res://Carpeta_PEDRO/Diseños/freepolygon (004).FBX (1).FBX" id="2_im1f8"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_im1f8"]
 

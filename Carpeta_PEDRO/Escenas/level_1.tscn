@@ -354,6 +354,20 @@ offset_right = 33.04001
 offset_bottom = -42.04001
 texture = ExtResource("14_gxkoe")
 
+[node name="Panel2" type="Panel" parent="."]
+offset_right = 219.0
+offset_bottom = 164.0
+script = ExtResource("14_c1xes")
+
+[node name="TextureRect" type="TextureRect" parent="Panel2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.01
+anchor_bottom = 0.99000007
+offset_right = 33.04001
+offset_bottom = -42.04001
+texture = ExtResource("14_gxkoe")
+
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(100.865776, 0, 0, 0, 1, 0, 0, 0, 63.529274, 3.9223003, 0.30965424, 0.94815826)
 material_override = ExtResource("10_nxg33")
