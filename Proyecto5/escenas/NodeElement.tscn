@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://dx0hafoxk1jpg"]
+
+[ext_resource type="Script" uid="uid://jtyf8r3inndd" path="res://Proyecto5/Scripts/node_element.gd" id="1_gcijd"]
+[ext_resource type="Texture2D" uid="uid://chvm8he5nvqjw" path="res://icon.svg" id="2_dxeai"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_47ik1"]
+radius = 59.135437
+
+[node name="NodeElement" type="Area2D" groups=["nodes"]]
+script = ExtResource("1_gcijd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(74, 57)
+shape = SubResource("CircleShape2D_47ik1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(75, 56.000004)
+scale = Vector2(0.6328125, 0.6171875)
+texture = ExtResource("2_dxeai")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 21.0
+offset_bottom = 15.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
