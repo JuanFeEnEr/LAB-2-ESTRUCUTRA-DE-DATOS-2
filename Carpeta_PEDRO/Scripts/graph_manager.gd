@@ -1,12 +1,15 @@
 extends Node
 
-var buildings: Array = []          # nodos (edificios)
-var visited_sequence: Array = []   # node_id en el orden visitado
+var buildings: Array = []        
+var visited_sequence: Array = []   
 var last_building: Area3D = null
-var player_edges: Array = []       # cada elemento: {u, v}
+var player_edges: Array = []       
+
+
+var connected_nodes: Dictionary = {} 
 
 var rng := RandomNumberGenerator.new()
-var all_edges: Array = []          # cada elemento: {u, v, w}
+var all_edges: Array = []         
 
 @onready var drawer: Node3D = null
 var status_label = null
@@ -59,7 +62,7 @@ func _build_all_edges() -> void:
 			var b: Area3D = buildings[j]
 			var w = 0
 			if "weight" in a and "weight" in b:
-				w = a.weight + b.weight  # peso de la arista = suma de pesos de nodos
+				w = a.weight + b.weight  
 			else:
 				w = rng.randi_range(1, 9)
 			var u = a.node_id
@@ -75,12 +78,15 @@ func _build_all_edges() -> void:
 func _init_start_node() -> void:
 	if buildings.size() == 0:
 		return
-	# Elegir como nodo inicial el de menor node_id (por ej. nodo 1)
+	
 	last_building = buildings[0]
 	for b in buildings:
 		if b.node_id < last_building.node_id:
 			last_building = b
 	print("Nodo inicial del cable dinámico:", last_building.node_id)
+	
+	
+	connected_nodes[last_building.node_id] = true
 
 
 func get_last_building() -> Area3D:
@@ -91,19 +97,24 @@ func register_visit(building: Area3D) -> void:
 	if building == null:
 		return
 
-	# Registrar secuencia por node_id
+	
+	if connected_nodes.has(building.node_id):
+		_set_status("⚠️ El nodo %d ya está conectado." % building.node_id)
+		return
+
+	
 	if visited_sequence.size() == 0 or visited_sequence[-1] != building.node_id:
 		visited_sequence.append(building.node_id)
 		print("Secuencia de visita:", visited_sequence)
 
-	# Registrar arista jugador
+	
 	if last_building != null and last_building != building:
 		var u = last_building.node_id
 		var v = building.node_id
 		var a = min(u, v)
 		var b = max(u, v)
 
-		# evitar duplicados
+		
 		var exists = false
 		for e in player_edges:
 			if e["u"] == a and e["v"] == b:
@@ -117,6 +128,9 @@ func register_visit(building: Area3D) -> void:
 
 			if drawer and drawer.has_method("draw_connection"):
 				drawer.draw_connection(last_building, building)
+			
+			
+			connected_nodes[building.node_id] = true
 
 	last_building = building
 
@@ -132,11 +146,12 @@ func verify_solution() -> void:
 	for id in visited_sequence:
 		visited_dict[id] = true
 
-	if visited_dict.size() < n:
-		_set_status("Debes visitar todos los nodos antes de verificar.")
+	
+	if connected_nodes.size() < n:
+		_set_status("Debes conectar todos los nodos antes de verificar (faltan %d)." % (n - connected_nodes.size()))
 		return
 
-	# Debe haber exactamente n-1 aristas para formar un árbol
+	
 	if player_edges.size() != n - 1:
 		_set_status("Debes crear exactamente %d conexiones. Ahora tienes %d." % [n - 1, player_edges.size()])
 		return
@@ -146,7 +161,7 @@ func verify_solution() -> void:
 		_set_status("No se pudo calcular el árbol mínimo.")
 		return
 
-	# Convertir a conjuntos comparables
+	
 	var mst_set = {}
 	for e in mst_edges:
 		var key = _edge_key(e["u"], e["v"])
@@ -167,9 +182,9 @@ func verify_solution() -> void:
 				break
 
 	if ok:
-		_set_status("✅ Correcto: construiste un árbol de expansión mínimo (Prim/Kruskal).")
+		_set_status("Correcto: construiste un árbol de expansión mínimo (Prim/Kruskal).")
 	else:
-		_set_status("❌ La solución no es mínima. Intenta ajustar las conexiones.")
+		_set_status("La solución no es mínima. Intenta ajustar las conexiones.")
 
 
 func _compute_mst_edges() -> Array:
@@ -242,13 +257,13 @@ func _set_status(msg: String) -> void:
 		status_label.text = msg
 	print(msg)
 
+
 func compute_mst_edges_prim() -> Array:
 	var n = buildings.size()
 	if n == 0:
 		return []
 	var visited = {}
 	var edges = []
-	# start from smallest id
 	var start = buildings[0].node_id
 	for b in buildings:
 		if b.node_id < start:
