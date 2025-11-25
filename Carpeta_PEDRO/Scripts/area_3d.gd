@@ -18,7 +18,7 @@ func _ready():
 		label3d = Label3D.new()
 		label3d.name = "Label3D"
 		add_child(label3d)
-
+ #mama
 	# Buscar un MeshInstance3D para calcular la altura y posición
 	var mesh_node: MeshInstance3D = _find_mesh_instance(self)
 
