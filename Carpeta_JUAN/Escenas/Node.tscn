@@ -9,13 +9,15 @@ radius = 31.93103
 [node name="Node" type="Node2D"]
 script = ExtResource("1_syofa")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Icon" type="Sprite2D" parent="."]
 texture = ExtResource("2_ijern")
 hframes = 2
 
-[node name="Label" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="IdLabel" type="Label" parent="."]
+offset_left = -20.0
+offset_top = 19.0
+offset_right = 20.0
+offset_bottom = 42.0
 
 [node name="Area2D" type="Area2D" parent="."]
 

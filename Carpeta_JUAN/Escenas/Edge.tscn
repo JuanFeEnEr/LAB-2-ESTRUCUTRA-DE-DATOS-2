@@ -2,11 +2,5 @@
 
 [ext_resource type="Script" uid="uid://di2gop68ba5ae" path="res://Carpeta_JUAN/Codigos/Edge.gd" id="1_bnisq"]
 
-[node name="Edge" type="Node2D"]
+[node name="Edge" type="Line2D"]
 script = ExtResource("1_bnisq")
-
-[node name="Line2D" type="Line2D" parent="."]
-
-[node name="Label" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
