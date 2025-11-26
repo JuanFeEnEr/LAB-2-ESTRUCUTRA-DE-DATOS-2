@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwfwf42a0gi74"
-path="res://.godot/imported/Generated Image November 19, 2025 - 11_38AM.png-dc6d6249f8fbc8e4d2ec49b029a337c2.ctex"
+uid="uid://bunh4yr6eoruo"
+path="res://.godot/imported/banner.png-0149fcfd3764e5c527a2414965dd9297.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Mapas/Fondos/Generated Image November 19, 2025 - 11_38AM.png"
-dest_files=["res://.godot/imported/Generated Image November 19, 2025 - 11_38AM.png-dc6d6249f8fbc8e4d2ec49b029a337c2.ctex"]
+source_file="res://Carpeta_MARIA/addons/dialogue_manager/assets/banner.png"
+dest_files=["res://.godot/imported/banner.png-0149fcfd3764e5c527a2414965dd9297.ctex"]
 
 [params]
 
