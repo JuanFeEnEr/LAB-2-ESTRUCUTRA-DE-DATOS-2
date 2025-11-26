@@ -1,19 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://crrbwa2ulwpcr"]
+[gd_scene load_steps=5 format=3 uid="uid://crrbwa2ulwpcr"]
 
-[ext_resource type="Script" uid="uid://c7vdb6snqpyic" path="res://Carpeta_PEDRO/Escenas/acid_projectile.gd" id="1_g1d88"]
-[ext_resource type="PackedScene" uid="uid://cc6enl5jbs5hi" path="res://Carpeta_PEDRO/Diseños/plasmabracelet.glb" id="2_i7b6h"]
+[ext_resource type="Script" uid="uid://c7vdb6snqpyic" path="res://Carpeta_PEDRO/Scripts/acid_projectile.gd" id="1_g1d88"]
+[ext_resource type="Material" uid="uid://bsqpix02bhkvr" path="res://Carpeta_PEDRO/Materiales/materiales.tres" id="2_i7b6h"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_p4cqr"]
-radius = 0.26010254
+[sub_resource type="SphereMesh" id="SphereMesh_g1d88"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_i7b6h"]
 
 [node name="AcidProjectile" type="Area3D"]
 script = ExtResource("1_g1d88")
+speed = 30.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = ExtResource("2_i7b6h")
+mesh = SubResource("SphereMesh_g1d88")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.46278948, 0, 0, 0, 1, 0, 0, 0)
-shape = SubResource("SphereShape3D_p4cqr")
-
-[node name="plasmabracelet" parent="." instance=ExtResource("2_i7b6h")]
-transform = Transform3D(10.134039, 0, 0, 0, 3.0906155, 0, 0, 0, 10.345795, -0.00941965, 0, 0.21896863)
+shape = SubResource("SphereShape3D_i7b6h")

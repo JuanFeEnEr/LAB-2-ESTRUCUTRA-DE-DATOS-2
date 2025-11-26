@@ -5,12 +5,12 @@
 [ext_resource type="Texture2D" uid="uid://bcpl7d3mdn6w2" path="res://Carpeta_PEDRO/Diseños/servers.png" id="3_lpkt5"]
 [ext_resource type="ArrayMesh" uid="uid://cyxu05sctfeis" path="res://Carpeta_PEDRO/Diseños/ServerV2+console.obj" id="4_efuhd"]
 [ext_resource type="Script" uid="uid://bg34klxbyu7rj" path="res://Carpeta_PEDRO/Scripts/graph_manager.gd" id="5_lh4tq"]
-[ext_resource type="Script" uid="uid://beot3b4i40dy3" path="res://Carpeta_PEDRO/Scripts/life_label.gd" id="9_6d1m3"]
+[ext_resource type="Script" uid="uid://dey0euqxn8668" path="res://Carpeta_PEDRO/Scripts/panel.gd" id="9_qnvsu"]
 [ext_resource type="PackedScene" uid="uid://b4septjgnw1sx" path="res://Carpeta_PEDRO/Escenas/virus_enemy.tscn" id="9_sgf20"]
 [ext_resource type="Script" uid="uid://b1swv4ghy7pso" path="res://Carpeta_PEDRO/Scripts/line_drawer.gd" id="10_n1v2s"]
 [ext_resource type="Material" uid="uid://cu2ygmcxbbbn7" path="res://Carpeta_PEDRO/Materiales/new_standard_material_3d.tres" id="10_nxg33"]
 [ext_resource type="Script" uid="uid://c8umm0klltbux" path="res://Carpeta_PEDRO/Scripts/area_3d.gd" id="11_t7iu2"]
-[ext_resource type="Script" uid="uid://cpgjb05s5r51e" path="res://Carpeta_PEDRO/Scripts/panel.gd" id="14_c1xes"]
+[ext_resource type="Script" uid="uid://cpgjb05s5r51e" path="res://Carpeta_PEDRO/Escenas/panel.gd" id="14_c1xes"]
 [ext_resource type="Texture2D" uid="uid://f315ir6121od" path="res://Carpeta_PEDRO/Diseños/images.png" id="14_gxkoe"]
 [ext_resource type="PackedScene" uid="uid://crrbwa2ulwpcr" path="res://Carpeta_PEDRO/Escenas/acid_projectile.tscn" id="14_rsuem"]
 [ext_resource type="Material" uid="uid://crcxmypeesa04" path="res://Carpeta_PEDRO/Materiales/arbol.tres" id="15_dm07i"]
@@ -291,9 +291,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.09868, 79.468956, -2.2397
 visible = false
 text = "HOLA COMO ESTAS"
 
-[node name="CharacterBody3D" parent="." node_paths=PackedStringArray("life_label") instance=ExtResource("3_gjwfl")]
+[node name="CharacterBody3D" parent="." groups=["player"] instance=ExtResource("3_gjwfl")]
 transform = Transform3D(1.243214, 0, 0, 0, 1.627319, 0, 0, 0, 1.5806298, 69.99843, 48.09847, -0.03752899)
-life_label = NodePath("../UI/LifeLabel")
 
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
 transform = Transform3D(-3.515998e-08, 0, 0.8043667, 0, 0.6145077, 0, -0.6326592, 0, -2.765441e-08, 5.0931816, 0.15320206, 0.33623308)
@@ -370,23 +369,11 @@ offset_bottom = 40.0
 script = ExtResource("14_c1xes")
 
 [node name="LabelPregunta" type="Label" parent="UI/Panel"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -23.0
-grow_horizontal = 0
-grow_vertical = 0
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
 
 [node name="BotonOpcion1" type="Button" parent="UI/Panel"]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-
-[node name="BotonOpcion3" type="Button" parent="UI/Panel"]
 layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
@@ -396,28 +383,37 @@ layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
 
-[node name="LifeLabel" type="Label" parent="UI"]
-offset_right = 40.0
-offset_bottom = 23.0
-text = "VIDAS: ❤️❤️❤️"
-script = ExtResource("9_6d1m3")
+[node name="BotonOpcion3" type="Button" parent="UI/Panel"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
 
 [node name="Panel" type="Panel" parent="."]
-offset_left = 815.0
-offset_top = -2.0
-offset_right = 1034.0
-offset_bottom = 162.0
-script = ExtResource("14_c1xes")
+offset_right = 219.0
+offset_bottom = 164.0
+script = ExtResource("9_qnvsu")
 
 [node name="TextureRect" type="TextureRect" parent="Panel"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.01
 anchor_bottom = 0.99000007
-offset_left = 2.0
-offset_top = 4.0
-offset_right = 112.81
-offset_bottom = -6.360016
+offset_right = 33.04001
+offset_bottom = -42.04001
+texture = ExtResource("14_gxkoe")
+
+[node name="Panel2" type="Panel" parent="."]
+offset_right = 219.0
+offset_bottom = 164.0
+script = ExtResource("9_qnvsu")
+
+[node name="TextureRect" type="TextureRect" parent="Panel2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.01
+anchor_bottom = 0.99000007
+offset_right = 33.04001
+offset_bottom = -42.04001
 texture = ExtResource("14_gxkoe")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
@@ -452,7 +448,7 @@ material_override = ExtResource("15_dm07i")
 mesh = SubResource("QuadMesh_efuhd")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.5689447, 0, -3.5332458, 0, 179.0069, 0, 130.91577, 0, -0.015355153, 104.71251, 37.813484, 0.070791245)
+transform = Transform3D(-0.5689447, 0, -3.5332458, 0, 179.0069, 0, 130.91577, 0, -0.015355153, 104.67137, 37.813484, 0)
 material_override = ExtResource("15_dm07i")
 mesh = SubResource("QuadMesh_os35i")
 
