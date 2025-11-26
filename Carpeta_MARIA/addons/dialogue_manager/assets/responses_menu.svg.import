@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c55vw8704m0d6"
-path="res://.godot/imported/4k-ultra-h.jpg-2a28ef8450720edb4233309b926b888c.ctex"
+uid="uid://dtp3d6gvhysh7"
+path="res://.godot/imported/responses_menu.svg-e5fe0a4973921e072314da24998f0bd1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Carpeta_PEDRO/Diseños/4k-ultra-h.jpg"
-dest_files=["res://.godot/imported/4k-ultra-h.jpg-2a28ef8450720edb4233309b926b888c.ctex"]
+source_file="res://Carpeta_MARIA/addons/dialogue_manager/assets/responses_menu.svg"
+dest_files=["res://.godot/imported/responses_menu.svg-e5fe0a4973921e072314da24998f0bd1.ctex"]
 
 [params]
 
@@ -38,3 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

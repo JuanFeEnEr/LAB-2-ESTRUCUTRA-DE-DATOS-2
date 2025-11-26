@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bntkpnkn2v6fu"]
 
 [ext_resource type="Texture2D" uid="uid://bywg31o2goxrq" path="res://Carpeta_PEDRO/Diseños/asd.jpeg" id="1_bkm7y"]
-[ext_resource type="Script" uid="uid://b1m4bydnnwxxj" path="res://Carpeta_PEDRO/Escenas/control.gd" id="1_kllkb"]
+[ext_resource type="Script" uid="uid://b1m4bydnnwxxj" path="res://Carpeta_PEDRO/Scripts/control.gd" id="1_kllkb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hhk1q"]
 bg_color = Color(0, 0, 0, 1)

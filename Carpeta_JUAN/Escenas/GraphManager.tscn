@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://j1hrn1o2blgj"]
+[gd_scene load_steps=7 format=3 uid="uid://j1hrn1o2blgj"]
 
-[ext_resource type="Texture2D" uid="uid://4nof5f5161ti" path="res://Carpeta_PEDRO/Escenas/Background.png" id="1_bvj2y"]
+[ext_resource type="Texture2D" uid="uid://4nof5f5161ti" path="res://Carpeta_JUAN/Background.png" id="1_bvj2y"]
 [ext_resource type="Script" uid="uid://cjpllfm2oc3o5" path="res://Carpeta_JUAN/Codigos/GraphManager.gd" id="1_xdmuk"]
 [ext_resource type="PackedScene" uid="uid://vh2uci3l65xl" path="res://Carpeta_JUAN/Escenas/Node.tscn" id="2_bvj2y"]
 [ext_resource type="PackedScene" uid="uid://bc7rskvhvna81" path="res://Carpeta_JUAN/Escenas/Edge.tscn" id="3_u8hc4"]
 [ext_resource type="Script" uid="uid://cb6bwtmv5j24a" path="res://Carpeta_JUAN/Codigos/PopupMessage.gd" id="5_u8hc4"]
+[ext_resource type="FontFile" uid="uid://dd1vwv0omwkmc" path="res://Carpeta_JUAN/Escenas/ARCADECLASSIC.TTF" id="6_1xdj5"]
 
 [node name="Main Scene" type="Node2D"]
 
@@ -26,23 +27,23 @@ position = Vector2(119, 348)
 node_id = "S"
 
 [node name="A" parent="Graph Manager/Nodes" instance=ExtResource("2_bvj2y")]
-position = Vector2(306, 189)
+position = Vector2(393, 195)
 node_id = "A"
 
 [node name="B" parent="Graph Manager/Nodes" instance=ExtResource("2_bvj2y")]
-position = Vector2(419, 486)
+position = Vector2(386, 478)
 node_id = "B"
 
 [node name="C" parent="Graph Manager/Nodes" instance=ExtResource("2_bvj2y")]
-position = Vector2(720, 148)
+position = Vector2(812, 209)
 node_id = "C"
 
 [node name="D" parent="Graph Manager/Nodes" instance=ExtResource("2_bvj2y")]
-position = Vector2(710, 414)
+position = Vector2(810, 477)
 node_id = "D"
 
 [node name="T" parent="Graph Manager/Nodes" instance=ExtResource("2_bvj2y")]
-position = Vector2(1045, 308)
+position = Vector2(1055, 354)
 node_id = "T"
 
 [node name="Edges" type="Node2D" parent="Graph Manager"]
@@ -103,7 +104,19 @@ script = ExtResource("5_u8hc4")
 offset_right = 40.0
 offset_bottom = 23.0
 
-[node name="Button" type="Button" parent="UI"]
+[node name="ReiniciarFlujo" type="Button" parent="UI"]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 193.0
+offset_top = 587.0
+offset_right = 329.0
+offset_bottom = 618.0
+text = "REINICIAR FLUJO"
+
+[node name="Security Mayhem" type="Label" parent="."]
+offset_left = 450.0
+offset_top = 25.0
+offset_right = 763.0
+offset_bottom = 66.0
+theme_override_fonts/font = ExtResource("6_1xdj5")
+theme_override_font_sizes/font_size = 40
+text = "Security Mayhem"
