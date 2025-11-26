@@ -3,6 +3,7 @@ extends Node2D
 @onready var nodes_container: Node = $Nodes
 @onready var edges_container: Node = $Edges
 @onready var btn_checar = $"/root/Main Scene/UI/ChecarFlujo"
+@onready var btn_reiniciar = $"/root/Main Scene/UI/ReiniciarFlujo"
 var used_edges: Dictionary = {}   # "A|B" → true si ya se usó
 
 
@@ -18,6 +19,8 @@ func _ready() -> void:
 
 	if btn_checar:
 		btn_checar.pressed.connect(checar_flujo)
+	if btn_reiniciar:
+		btn_reiniciar.pressed.connect(_reiniciar_flujo)
 
 
 # ---------------------------------------------------------
@@ -111,6 +114,19 @@ func checar_flujo() -> void:
 		_show_message("Aún no alcanzas el flujo máximo.\n"
 			+ "Actual: " + str(total_flow) + " / " + str(max_theoretical)
 			+ "\nFaltan: " + str(faltante))
+
+func _reiniciar_flujo() -> void:
+	# limpiar selección
+	selected_nodes.clear()
+	total_flow = 0
+
+	# apagar TODAS las aristas
+	for key: String in edges.keys():
+		var e = edges[key]
+		if e:
+			e.highlight(false)
+
+	_show_message("Flujo reiniciado. Puedes intentar otro camino.")
 
 
 func _on_level_success() -> void:

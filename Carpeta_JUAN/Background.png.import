@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3lxvupm0qare"
-path="res://.godot/imported/big_demon_run_anim_f2.png-f8173067c1e00b798e464bceb30a634f.ctex"
+uid="uid://4nof5f5161ti"
+path="res://.godot/imported/Background.png-583abab94b8599d912e1c1cc23d94be0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Carpeta_JOHA/imagenes/big_demon_run_anim_f2.png"
-dest_files=["res://.godot/imported/big_demon_run_anim_f2.png-f8173067c1e00b798e464bceb30a634f.ctex"]
+source_file="res://Carpeta_JUAN/Background.png"
+dest_files=["res://.godot/imported/Background.png-583abab94b8599d912e1c1cc23d94be0.ctex"]
 
 [params]
 
