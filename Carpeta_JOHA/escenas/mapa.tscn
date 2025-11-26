@@ -665,11 +665,15 @@ tile_map_data = PackedByteArray("AAAeACcAAAAEAAcAAAAeACYAAAAEAAcAAAAeACUAAAAEAAc
 tile_set = SubResource("TileSet_20xsi")
 
 [node name="jugador" parent="." instance=ExtResource("3_20xsi")]
-position = Vector2(-56, -2)
+position = Vector2(-53, -10)
 
-[node name="fantasma" parent="." node_paths=PackedStringArray("puntos_de_patrulla") instance=ExtResource("4_kd5a8")]
-position = Vector2(-72, 63)
-puntos_de_patrulla = [NodePath("../superior_izquierda")]
+[node name="fantasma1" parent="." node_paths=PackedStringArray("punto_a", "punto_b") instance=ExtResource("4_kd5a8")]
+position = Vector2(-60, 61)
+punto_a = NodePath("../PuntoA")
+punto_b = NodePath("../PuntoB")
 
-[node name="superior_izquierda" type="Marker2D" parent="."]
-position = Vector2(70, 251)
+[node name="PuntoA" type="Marker2D" parent="."]
+position = Vector2(41, 471)
+
+[node name="PuntoB" type="Marker2D" parent="."]
+position = Vector2(359, 475)

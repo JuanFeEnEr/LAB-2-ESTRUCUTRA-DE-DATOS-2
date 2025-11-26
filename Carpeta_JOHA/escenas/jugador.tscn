@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://1vq20chrntbd"]
+[gd_scene load_steps=15 format=3 uid="uid://1vq20chrntbd"]
 
 [ext_resource type="Script" uid="uid://dh53kfbs3ci4d" path="res://Carpeta_JOHA/escenas/jugador.gd" id="1_7ii8e"]
 [ext_resource type="Texture2D" uid="uid://c540ping6at18" path="res://Carpeta_JOHA/imagenes/Idle (32x32).png" id="1_easq3"]
 [ext_resource type="Texture2D" uid="uid://bhumqgos66wy3" path="res://Carpeta_JOHA/imagenes/Run (32x32).png" id="3_th2ev"]
 [ext_resource type="Texture2D" uid="uid://2f8xgfusuopi" path="res://Carpeta_JOHA/imagenes/Wall Jump (32x32).png" id="4_yvlo0"]
 [ext_resource type="Texture2D" uid="uid://bb5y2gjgfa7ej" path="res://Carpeta_JOHA/imagenes/Jump (32x32).png" id="5_dfwrb"]
+[ext_resource type="Texture2D" uid="uid://5pivhs0pi1o1" path="res://Carpeta_JOHA/imagenes/weapon_regular_sword.png" id="6_bci0v"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7ii8e"]
 radius = 8.0
@@ -218,6 +219,9 @@ _data = {
 &"saltar": SubResource("Animation_44fmi")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_44fmi"]
+size = Vector2(4, 7)
+
 [node name="jugador" type="CharacterBody2D"]
 script = ExtResource("1_7ii8e")
 
@@ -245,3 +249,19 @@ target_position = Vector2(27, 0)
 [node name="pared_izquierda" type="RayCast2D" parent="."]
 position = Vector2(585, 641)
 target_position = Vector2(-31, 0)
+
+[node name="PivoteEspada" type="Node2D" parent="."]
+
+[node name="AreaEspada" type="Area2D" parent="PivoteEspada"]
+position = Vector2(566, 323)
+
+[node name="SpriteEspada" type="Sprite2D" parent="PivoteEspada/AreaEspada"]
+z_index = 5
+position = Vector2(28, 314)
+scale = Vector2(0.7, 0.58035815)
+texture = ExtResource("6_bci0v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PivoteEspada/AreaEspada"]
+position = Vector2(28, 312.5)
+shape = SubResource("RectangleShape2D_44fmi")
+disabled = true
