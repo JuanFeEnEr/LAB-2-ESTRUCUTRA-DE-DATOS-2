@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6ta06uhmqjb2"
-path.s3tc="res://.godot/imported/4k-ultra-hd-hdr-fg4xcqg38eu6olyc.jpg-cf32affac2e06795804628ca5e02a24e.s3tc.ctex"
+uid="uid://biay2yryy8iyv"
+path.s3tc="res://.godot/imported/console.png-d9a2debcce8fef5031fc15ec3a0fbca4.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Carpeta_PEDRO/Diseños/4k-ultra-hd-hdr-fg4xcqg38eu6olyc.jpg"
-dest_files=["res://.godot/imported/4k-ultra-hd-hdr-fg4xcqg38eu6olyc.jpg-cf32affac2e06795804628ca5e02a24e.s3tc.ctex"]
+source_file="res://Carpeta_PEDRO/Diseños/console.png"
+dest_files=["res://.godot/imported/console.png-d9a2debcce8fef5031fc15ec3a0fbca4.s3tc.ctex"]
 
 [params]
 

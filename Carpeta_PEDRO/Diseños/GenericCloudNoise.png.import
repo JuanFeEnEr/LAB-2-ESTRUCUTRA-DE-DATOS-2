@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://f315ir6121od"
-path.s3tc="res://.godot/imported/images.png-b673973576427d7216fb4ff42140ac89.s3tc.ctex"
+uid="uid://b040b0yo4l543"
+path.s3tc="res://.godot/imported/GenericCloudNoise.png-a7ebb6bccfc63f92f3ce16c723b266a9.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Carpeta_PEDRO/Diseños/images.png"
-dest_files=["res://.godot/imported/images.png-b673973576427d7216fb4ff42140ac89.s3tc.ctex"]
+source_file="res://Carpeta_PEDRO/Diseños/GenericCloudNoise.png"
+dest_files=["res://.godot/imported/GenericCloudNoise.png-a7ebb6bccfc63f92f3ce16c723b266a9.s3tc.ctex"]
 
 [params]
 
