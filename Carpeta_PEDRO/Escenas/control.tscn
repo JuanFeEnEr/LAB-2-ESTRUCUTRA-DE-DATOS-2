@@ -1,7 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://bntkpnkn2v6fu"]
+[gd_scene load_steps=5 format=3 uid="uid://bntkpnkn2v6fu"]
 
-[ext_resource type="Texture2D" uid="uid://bywg31o2goxrq" path="res://Carpeta_PEDRO/Diseños/asd.jpeg" id="1_bkm7y"]
 [ext_resource type="Script" uid="uid://b1m4bydnnwxxj" path="res://Carpeta_PEDRO/Scripts/control.gd" id="1_kllkb"]
+[ext_resource type="Shader" uid="uid://ddllbl7hw2pp8" path="res://Carpeta_PEDRO/Escenas/control.gdshader" id="2_epfxy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mobre"]
+shader = ExtResource("2_epfxy")
+shader_parameter/cyber_color = Color(0, 1, 0.3, 0.8)
+shader_parameter/background_color = Color(0, 0.1, 0, 0.5)
+shader_parameter/grid_size = 50.0
+shader_parameter/scroll_speed = 0.5
+shader_parameter/glitch_intensity = 0.02
+shader_parameter/scan_beam_width = 0.1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hhk1q"]
 bg_color = Color(0, 0, 0, 1)
@@ -20,7 +29,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kllkb")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="PanelHistoria" type="Panel" parent="."]
+material = SubResource("ShaderMaterial_mobre")
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.009000001
@@ -33,72 +43,39 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_hhk1q")
 
-[node name="TextureRect" type="TextureRect" parent="Panel"]
+[node name="TextureRect" type="TextureRect" parent="PanelHistoria"]
 layout_mode = 0
-offset_right = 1154.0
-offset_bottom = 650.0
+offset_left = 4.0
+offset_top = -11.0
+offset_right = 1159.0
+offset_bottom = 646.0
 
-[node name="4kUltraHdHdrFg4Xcqg38Eu6Olyc" type="Sprite2D" parent="Panel"]
-position = Vector2(713, 384)
-
-[node name="Asd" type="Sprite2D" parent="Panel"]
-position = Vector2(573, 322)
-scale = Vector2(4.19708, 3.527174)
-texture = ExtResource("1_bkm7y")
-
-[node name="4kUltraH" type="Sprite2D" parent="Panel"]
-position = Vector2(502.00006, 301.00006)
-scale = Vector2(0.9261364, 0.8057065)
-
-[node name="Label" type="Label" parent="."]
+[node name="TextoHistoria" type="RichTextLabel" parent="PanelHistoria"]
 layout_mode = 0
-offset_left = 472.0
-offset_top = 62.0
-offset_right = 658.0
-offset_bottom = 88.0
-text = "LA RED SE DESCONECTÓ"
+offset_left = 224.0
+offset_top = 33.0
+offset_right = 935.0
+offset_bottom = 329.0
+bbcode_enabled = true
 
-[node name="Button" type="Button" parent="."]
+[node name="BtnJugar" type="Button" parent="."]
 layout_mode = 0
-offset_left = 189.0
-offset_top = 436.0
-offset_right = 411.0
-offset_bottom = 507.0
+offset_left = 468.0
+offset_top = 468.0
+offset_right = 689.0
+offset_bottom = 539.0
 
-[node name="Label" type="Label" parent="Button"]
+[node name="Label" type="Label" parent="BtnJugar"]
 layout_mode = 0
-offset_left = 88.0
-offset_top = 22.0
-offset_right = 219.0
-offset_bottom = 65.0
+offset_left = 93.0
+offset_top = 20.0
+offset_right = 224.0
+offset_bottom = 63.0
 text = "jugar"
 
-[node name="TextureRect" type="TextureRect" parent="Button"]
+[node name="TextureRect" type="TextureRect" parent="BtnJugar"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Button2" type="Button" parent="."]
-layout_mode = 0
-offset_left = 696.0
-offset_top = 432.0
-offset_right = 907.0
-offset_bottom = 497.0
-
-[node name="Label" type="Label" parent="Button2"]
-layout_mode = 0
-offset_left = 76.0
-offset_top = 17.0
-offset_right = 213.0
-offset_bottom = 58.0
-text = "Salir"
-
-[node name="TextureRect" type="TextureRect" parent="Button2"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = -1.0
-offset_right = 213.0
-offset_bottom = 64.0
-
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="BtnJugar" to="." method="_on_btn_jugar_pressed"]
