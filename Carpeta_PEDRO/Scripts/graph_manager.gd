@@ -6,11 +6,26 @@ var player_edges: Array = []
 var connected_nodes: Dictionary = {} 
 var all_edges: Array = []         
 
+# --- TOPOLOGÍA DEL MAPA (Basada en tu imagen) ---
+# Aquí definimos qué nodo puede conectarse con cuál.
+# Formato: { ID_NODO: [VECINO_1, VECINO_2, ...] }
+var allowed_connections = {
+	0: [2, 9],             # a conecta con b, i
+	2: [1, 3, 9],          # b conecta con a, c, i
+	3: [2, 4, 8],          # c conecta con b, d, h
+	4: [3, 5, 6],          # d conecta con c, e, f
+	5: [4, 6],             # e conecta con d, f
+	6: [4, 5, 7, 8],       # f conecta con d, e, g, h
+	7: [6, 8, 9],          # g conecta con f, h, i
+	8: [3, 6, 7, 9],       # h conecta con c, f, g, i
+	9: [1, 2, 7, 8]        # i conecta con a, b, g, h
+}
+
 @onready var drawer: Node3D = null
 @onready var status_label: Label = null
 var rng := RandomNumberGenerator.new()
 
-# Preguntas de Ciberseguridad
+# Preguntas
 var cyber_questions = [
 	{ "q": "¿Qué es Phishing?", "options": ["Suplantación", "Antivirus", "Firewall"], "correct": 0 },
 	{ "q": "¿Puerto HTTPS?", "options": ["80", "443", "21"], "correct": 1 },
@@ -26,19 +41,20 @@ func _ready():
 	
 	_collect_buildings()
 	_assign_random_weights()
-	_build_all_edges()
 	
-	# Ya no iniciamos nodos automáticamente. El jugador decide dónde empezar.
-	_set_status("Sistema listo. Conecta los nodos manualmente.")
+	# Construimos solo las aristas permitidas por el mapa
+	_build_allowed_edges_only()
+	
+	_set_status("Mapa cargado. Estrictamente basado en el diseño.")
 
 func reset_simulation() -> void:
 	player_edges.clear()
 	connected_nodes.clear()
 	if drawer and drawer.has_method("clear_all"):
 		drawer.clear_all()
-	_set_status("Reiniciado. Crea conexiones manualmente.")
+	_set_status("Reiniciado. Sigue la estructura del grafo.")
 
-# --- NUEVA LÓGICA DE CONEXIÓN ---
+# --- INTENTO DE CONEXIÓN (CON RESTRICCIÓN) ---
 func try_create_connection(node_a: Area3D, node_b: Area3D) -> bool:
 	if node_a == node_b:
 		_set_status("Error: No puedes conectar un nodo consigo mismo.")
@@ -47,28 +63,34 @@ func try_create_connection(node_a: Area3D, node_b: Area3D) -> bool:
 	var u = node_a.node_id
 	var v = node_b.node_id
 	
-	# Verificar si ya existe esa conexión (A->B es igual que B->A)
+	# 1. VERIFICACIÓN DE TOPOLOGÍA (NUEVO)
+	# Revisamos si esta conexión existe en el diccionario 'allowed_connections'
+	var allowed_neighbors = allowed_connections.get(u, [])
+	if not (v in allowed_neighbors):
+		_set_status("⛔ CONEXIÓN ILEGAL: El mapa no permite unir %d con %d." % [u, v])
+		# Dibujar línea roja temporal o sonido de error aquí sería genial
+		return false
+	
+	# 2. Verificar si ya la hiciste
 	for e in player_edges:
 		if e["u"] == min(u, v) and e["v"] == max(u, v):
 			_set_status("Esa conexión ya existe.")
 			return false
 
-	# Crear la conexión lógica
+	# 3. Éxito
 	var edge = {"u": min(u, v), "v": max(u, v)}
 	player_edges.append(edge)
 	
-	# Marcar nodos como "parte de la red"
 	connected_nodes[u] = true
 	connected_nodes[v] = true
 	
-	# Dibujar línea fija (Verde)
 	if drawer and drawer.has_method("draw_connection"):
 		drawer.draw_connection(node_a, node_b)
 		
-	_set_status("Conexión exitosa: %d <--> %d" % [u, v])
+	_set_status("✅ Conexión establecida: %d <--> %d" % [u, v])
 	return true
 
-# --- VERIFICACIÓN (PRIM / KRUSKAL) ---
+# --- VERIFICACIÓN DE SOLUCIÓN ---
 func verify_solution() -> void:
 	var n = buildings.size()
 	if n == 0: return
@@ -86,7 +108,7 @@ func verify_solution() -> void:
 			_set_status("Sobran cables (Ciclos). Tienes %d, necesitas %d." % [player_edges.size(), n-1])
 		return
 
-	# 3. ¿Es el Mínimo? (Comparar pesos)
+	# 3. Comparar pesos con el MST del MAPA (no el completo)
 	var mst_edges = _compute_mst_edges()
 	var optimal_weight = 0
 	for e in mst_edges: optimal_weight += e["w"]
@@ -96,7 +118,7 @@ func verify_solution() -> void:
 		player_weight += _find_weight_of_edge(pe["u"], pe["v"])
 		
 	if player_weight == optimal_weight:
-		_set_status("¡EXCELENTE! Solución Óptima (MST). Peso: %d" % player_weight)
+		_set_status("¡PERFECTO! Has dominado el algoritmo en este mapa.")
 	else:
 		_set_status("Válido pero CARO (Peso %d vs Óptimo %d)." % [player_weight, optimal_weight])
 
@@ -111,16 +133,42 @@ func _sort_by_node_id(a, b): return a.node_id < b.node_id
 
 func _assign_random_weights():
 	for b in buildings:
-		b.weight = rng.randi_range(1, 9)
+		# Asignamos peso aleatorio, pero idealmente podrías poner
+		# los pesos fijos de la imagen aquí si quisieras.
+		b.weight = rng.randi_range(1, 10)
 		if b.has_method("set_weight"): b.set_weight(b.weight)
 
-func _build_all_edges():
+# --- CONSTRUCCIÓN DEL GRAFO VÁLIDO ---
+func _build_allowed_edges_only() -> void:
 	all_edges.clear()
 	var n = buildings.size()
+	
+	# Recorremos solo los nodos que existen
 	for i in range(n):
-		for j in range(i+1, n):
-			var w = buildings[i].weight + buildings[j].weight
-			all_edges.append({"u": buildings[i].node_id, "v": buildings[j].node_id, "w": w})
+		var node_a = buildings[i]
+		var u = node_a.node_id
+		
+		# Obtenemos sus vecinos permitidos del diccionario
+		var neighbors = allowed_connections.get(u, [])
+		
+		for neighbor_id in neighbors:
+			# Solo agregamos si v > u para no duplicar aristas (1-2 y 2-1)
+			if neighbor_id > u:
+				# Buscar el nodo objeto B
+				var node_b = _find_building_by_id(neighbor_id)
+				if node_b:
+					var w = node_a.weight + node_b.weight
+					# Si quieres usar los pesos EXACTOS de la imagen, 
+					# tendrías que definir otro diccionario de pesos aquí.
+					
+					all_edges.append({"u": u, "v": neighbor_id, "w": w})
+	
+	print("Grafo construido con %d aristas válidas." % all_edges.size())
+
+func _find_building_by_id(id):
+	for b in buildings:
+		if b.node_id == id: return b
+	return null
 
 func _find_weight_of_edge(u, v) -> int:
 	for e in all_edges:
@@ -134,7 +182,7 @@ func _set_status(msg):
 	if status_label: status_label.text = msg
 	print(msg)
 
-# Algoritmo Kruskal interno (para comparar)
+# Algoritmo Kruskal
 func _compute_mst_edges() -> Array:
 	var mst: Array = []
 	var sorted = all_edges.duplicate()
