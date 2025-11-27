@@ -151,6 +151,16 @@ theme_override_fonts/font = ExtResource("6_1xdj5")
 theme_override_font_sizes/font_size = 25
 text = "REINICIAR FLUJO"
 
+[node name="Menu" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 447.0
+offset_top = 587.0
+offset_right = 514.0
+offset_bottom = 623.0
+theme_override_fonts/font = ExtResource("6_1xdj5")
+theme_override_font_sizes/font_size = 27
+text = "MENU"
+
 [node name="Security Mayhem" type="Label" parent="."]
 offset_left = 450.0
 offset_top = 25.0
@@ -159,3 +169,5 @@ offset_bottom = 66.0
 theme_override_fonts/font = ExtResource("6_1xdj5")
 theme_override_font_sizes/font_size = 40
 text = "Security Mayhem"
+
+[connection signal="pressed" from="UI/Menu" to="Graph Manager" method="_on_menu_pressed"]

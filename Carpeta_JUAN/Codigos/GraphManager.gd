@@ -243,3 +243,7 @@ func _edmonds_karp_maxflow(src: String, dst: String, caps_input: Dictionary) -> 
 		max_flow += path_flow
 
 	return max_flow
+
+
+func _on_menu_pressed() -> void:
+	get_tree().change_scene_to_file("res://Menú principal/menú principal.tscn")
