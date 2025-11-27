@@ -18,13 +18,19 @@ script = ExtResource("1_uo17t")
 [node name="FondoApagado" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -6.0720005
+anchor_left = -6.072
 anchor_top = -2.684
-anchor_right = -6.0720005
+anchor_right = -6.072
 anchor_bottom = -2.684
+<<<<<<< Updated upstream
 offset_left = 1038.7361
 offset_top = 508.016
 offset_right = 1150.7361
+=======
+offset_left = 997.736
+offset_top = 464.016
+offset_right = 1150.74
+>>>>>>> Stashed changes
 offset_bottom = 635.016
 texture = ExtResource("2_x34bt")
 expand_mode = 1
