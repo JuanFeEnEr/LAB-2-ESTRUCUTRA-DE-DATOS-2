@@ -226,8 +226,7 @@ size = Vector2(4.046875, 6.875)
 script = ExtResource("1_7ii8e")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(14, -98)
-zoom = Vector2(3, 3)
+position = Vector2(-2, -313)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-1, -8)

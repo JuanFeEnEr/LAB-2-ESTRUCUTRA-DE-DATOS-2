@@ -170,15 +170,12 @@ func realizar_ataque():
 	atacando = false
 
 func _on_espada_impacto(body):
-	# 1. EVITAR GOLPEARNOS A NOSOTROS MISMOS
-	if body == self:
-		return 
+	if body == self: return 
 
-	print("Golpeé a: ", body.name)
-
-	# 2. INTENTAR MATAR AL ENEMIGO
-	if body.has_method("morir"):
-		print("¡Matando a ", body.name, "!")
+	# 1. Intentamos hacer daño (Sistema de Vida)
+	if body.has_method("recibir_dano"):
+		body.recibir_dano()
+		
+	# 2. Soporte antiguo (por si acaso quedó algún script viejo)
+	elif body.has_method("morir"):
 		body.morir()
-	else:
-		print("ERROR: ", body.name, " no tiene la función 'morir'.")
