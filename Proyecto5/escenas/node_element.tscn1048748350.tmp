@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://byyk8i52a3xn5"]
+
+[ext_resource type="Script" uid="uid://msmox3nnnlq2" path="res://Proyecto5/escenas/node_element.gd" id="1_km3qs"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_km3qs"]
+radius = 47.38143
+
+[sub_resource type="Gradient" id="Gradient_vahec"]
+offsets = PackedFloat32Array(0.5466667, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vahec"]
+gradient = SubResource("Gradient_vahec")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[node name="NodeElement" type="Area2D"]
+script = ExtResource("1_km3qs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_km3qs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_vahec")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -19.0
+offset_top = -10.0
+offset_right = 21.0
+offset_bottom = 13.0
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 16
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 20.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+color = Color(0, 0.6054641, 0.23139375, 1)
