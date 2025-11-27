@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://qtuoms4ayhwc"]
+
+[ext_resource type="Script" uid="uid://u7fo8hxx4hkf" path="res://Script1/Pantalla1.gd" id="1_h3eif"]
+[ext_resource type="Texture2D" uid="uid://brxoa8rxgcbvk" path="res://Mapas/Fondos/Protocolo de Contención.jpg" id="2_iijfg"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_h3eif")
+
+[node name="ProtocoloDeContención" type="Sprite2D" parent="."]
+position = Vector2(617.5, 330)
+scale = Vector2(0.87429, 0.885869)
+texture = ExtResource("2_iijfg")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 111.0
+offset_top = 215.0
+offset_right = 581.0
+offset_bottom = 291.0
+text = "Play
+"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
