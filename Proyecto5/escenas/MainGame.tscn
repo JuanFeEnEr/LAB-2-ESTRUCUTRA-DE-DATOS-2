@@ -1,22 +1,72 @@
-[gd_scene load_steps=3 format=3 uid="uid://bbq5skshphmsb"]
+[gd_scene load_steps=6 format=3 uid="uid://c6w8u71bb0w2c"]
 
-[ext_resource type="Script" uid="uid://1p8s4dvtgb5j" path="res://Proyecto5/main_game.gd" id="1_21g07"]
-[ext_resource type="PackedScene" uid="uid://dx0hafoxk1jpg" path="res://Proyecto5/escenas/NodeElement.tscn" id="2_5u3o0"]
+[ext_resource type="Script" uid="uid://1p8s4dvtgb5j" path="res://Proyecto5/escenas/main_game.gd" id="1_21g07"]
+[ext_resource type="PackedScene" uid="uid://byyk8i52a3xn5" path="res://Proyecto5/escenas/node_element.tscn" id="2_5u3o0"]
+[ext_resource type="Script" uid="uid://b0yh4e8dfwlkb" path="res://Proyecto5/escenas/mission_display.gd" id="3_1n82r"]
+[ext_resource type="Script" uid="uid://beargfqrwgwvf" path="res://Proyecto5/escenas/terminal_effect.gd" id="3_6fvu7"]
+
+[sub_resource type="Environment" id="Environment_18ixq"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 1.5
 
 [node name="MainGame" type="Node2D"]
 script = ExtResource("1_21g07")
 node_scene = ExtResource("2_5u3o0")
 
-[node name="Control" type="CanvasLayer" parent="."]
-
-[node name="InstructionLabel" type="Label" parent="Control"]
-offset_right = 40.0
-offset_bottom = 23.0
-
-[node name="ResetButton" type="Button" parent="Control"]
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_18ixq")
 
 [node name="GraphContainer" type="Node2D" parent="."]
 
-[connection signal="pressed" from="Control/ResetButton" to="." method="_on_reset_button_pressed"]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="InstructionLabel" type="Label" parent="CanvasLayer"]
+offset_left = 703.0
+offset_top = 1.0
+offset_right = 1129.0
+offset_bottom = 71.0
+script = ExtResource("3_1n82r")
+
+[node name="ResetButton" type="Button" parent="CanvasLayer"]
+offset_top = 601.0
+offset_right = 116.0
+offset_bottom = 647.0
+text = "reset"
+
+[node name="HackingTerminal" type="Panel" parent="CanvasLayer"]
+modulate = Color(0.93408006, 0.93408054, 0.93408036, 1)
+self_modulate = Color(0.051970966, 0.05197096, 0.05197095, 0.41960785)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -563.0
+offset_top = -248.0
+offset_right = -78.0
+offset_bottom = -65.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TerminalText" type="RichTextLabel" parent="CanvasLayer/HackingTerminal"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = -4.0
+offset_right = 475.0
+offset_bottom = 173.0
+theme_override_colors/font_outline_color = Color(0.91903096, 0.89894664, 0.89337945, 1)
+bbcode_enabled = true
+fit_content = true
+script = ExtResource("3_6fvu7")
+
+[node name="NemesisHealth" type="ProgressBar" parent="CanvasLayer/HackingTerminal"]
+layout_mode = 0
+offset_top = -47.0
+offset_right = 260.0
+offset_bottom = -9.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(575, 323)
+
+[connection signal="pressed" from="CanvasLayer/ResetButton" to="." method="_on_reset_button_pressed"]
