@@ -4,4 +4,4 @@
 albedo_color = Color(0.19950327, 0.48783678, 0.29776788, 1)
 metallic = 1.0
 roughness = 0.4
-distance_fade_mode = 2
+distance_fade_mode = 1

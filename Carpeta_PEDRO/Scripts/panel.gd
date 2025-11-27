@@ -1,26 +1,31 @@
 extends Panel
 
-# Variable para conectar el texto de aviso
-@export var label_aviso: Label
+# Si tienes un Label de aviso ("Presiona M"), arrástralo aquí. 
+# Si no, déjalo vacío, no dará error.
+@export var aviso_label: Label 
 
 func _ready():
-	# 1. Al iniciar, ocultamos el Panel (y por ende la imagen)
-	self.visible = false
+	# Empezar oculto
+	visible = false
 	
-	# 2. Mostramos el aviso
-	if label_aviso:
-		label_aviso.text = "Presiona 'M' para ver el Mapa"
-		label_aviso.visible = true
+	if aviso_label:
+		aviso_label.visible = true
+		aviso_label.text = "Presiona 'M' para ver el Mapa"
 
 func _input(event):
-	# Detectar tecla M
+	# Detectar la tecla M
 	if event is InputEventKey and event.pressed and event.keycode == KEY_M:
-		
-		# Alternar visibilidad del Panel (Mapa)
-		self.visible = not self.visible
-		
-		# Lógica del aviso:
-		if label_aviso:
-			# Si el mapa está visible, ocultamos el aviso.
-			# Si el mapa está oculto, mostramos el aviso.
-			label_aviso.visible = not self.visible
+		_toggle_map()
+
+func _toggle_map():
+	# Invertir visibilidad
+	visible = not visible
+	
+	# GESTIÓN DEL MOUSE (Vital para que puedas mover el cursor en el mapa)
+	if visible:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		if aviso_label: aviso_label.visible = false
+	else:
+		# Al cerrar, devolvemos el control al juego
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		if aviso_label: aviso_label.visible = true
