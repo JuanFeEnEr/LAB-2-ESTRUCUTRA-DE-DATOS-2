@@ -37,10 +37,10 @@ func configurar_llave() -> void:
 func obtener_nombre_llave(sala: String, tipo: String) -> String:
 	match sala:
 		"SalaA": return "Llave B"
-		"SalaB": return "Llave C"
-		"SalaC": return "Llave D" if tipo == "BFS" else "Llave E"
-		"SalaD": return "Llave E" if tipo == "BFS" else "Llave F"
-		"SalaE": return "Llave D" if tipo == "DFS" else "Llave F"
+		"SalaB": return "Llave C" if tipo == "BFS" else "Llave D"
+		"SalaC": return "Llave D" if tipo == "BFS" else "Llave F"
+		"SalaD": return "Llave E" if tipo == "BFS" else "Llave E"
+		"SalaE": return "Llave F" if tipo == "DFS" else "Llave C"
 		_: return ""
 
 # --- DETECCIÓN DE COLISIÓN ---

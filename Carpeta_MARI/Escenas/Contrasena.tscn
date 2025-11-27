@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dxrqfof7uhh5v"]
+[gd_scene load_steps=9 format=3 uid="uid://dxrqfof7uhh5v"]
 
-[ext_resource type="Script" uid="uid://3ieyvh75ys31" path="res://Script1/HackPanel.gd" id="1_wolt4"]
-[ext_resource type="Texture2D" uid="uid://vti6im7krw0n" path="res://Mapas/Fondos/Contraseña.png" id="2_cvai0"]
-[ext_resource type="Texture2D" uid="uid://bnht3x22bo52b" path="res://Mapas/Fondos/Historial.png" id="3_sm5w0"]
+[ext_resource type="Script" uid="uid://3ieyvh75ys31" path="res://Carpeta_MARI/Script1/HackPanel.gd" id="1_wolt4"]
+[ext_resource type="Texture2D" uid="uid://vti6im7krw0n" path="res://Carpeta_MARI/Mapas/Fondos/Contraseña.png" id="2_cvai0"]
+[ext_resource type="Texture2D" uid="uid://bnht3x22bo52b" path="res://Carpeta_MARI/Mapas/Fondos/Historial.png" id="3_sm5w0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1a8cr"]
 bg_color = Color(0.027451, 0.211765, 0.054902, 1)
@@ -20,15 +20,29 @@ subpixel_positioning = 0
 default_font = SubResource("SystemFont_1a8cr")
 default_font_size = 16
 
+[sub_resource type="SystemFont" id="SystemFont_8awyr"]
+font_names = PackedStringArray("Consolas")
+subpixel_positioning = 0
+multichannel_signed_distance_field = true
+msdf_pixel_range = 18
+
+[sub_resource type="SystemFont" id="SystemFont_vhrvy"]
+font_names = PackedStringArray("Consolas")
+subpixel_positioning = 0
+multichannel_signed_distance_field = true
+msdf_pixel_range = 18
+
 [node name="HackPanel" type="Control" node_paths=PackedStringArray("display_label", "history_container", "keypad_grid")]
 layout_mode = 3
+anchor_left = 0.069
+anchor_top = 0.031
 anchor_right = 0.117
 anchor_bottom = 0.031
-offset_left = 430.0
-offset_top = 138.0
-offset_right = 335.216
-offset_bottom = 157.912
-scale = Vector2(2.69714, 2.84937)
+offset_left = 208.512
+offset_top = 207.912
+offset_right = 193.216
+offset_bottom = 247.912
+scale = Vector2(2.33626, 2.20329)
 script = ExtResource("1_wolt4")
 display_label = NodePath("HBoxContainer/VBoxContainer/Label")
 history_container = NodePath("HBoxContainer/HistoryScroll/VBoxContainer")
@@ -44,27 +58,27 @@ color = Color(0, 0, 0, 1)
 
 [node name="ColorRect" type="ColorRect" parent="ColorRect"]
 layout_mode = 0
-offset_left = -84.0
-offset_top = -3.0
-offset_right = 233.0
-offset_bottom = 159.0
+offset_left = -80.1738
+offset_top = -41.8591
+offset_right = 361.826
+offset_bottom = 218.141
 color = Color(0, 0, 0, 1)
 
 [node name="Contraseña" type="Sprite2D" parent="."]
-position = Vector2(0.759828, 64.2893)
+position = Vector2(4.09665, 64.2893)
 scale = Vector2(0.192601, 0.188769)
 texture = ExtResource("2_cvai0")
 
 [node name="Historial" type="Sprite2D" parent="."]
-position = Vector2(120.889, 64.3226)
+position = Vector2(122.372, 64.6736)
 scale = Vector2(0.19232, 0.195689)
 texture = ExtResource("3_sm5w0")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = -77.0
+offset_left = -73.6631
 offset_top = -7.0
-offset_right = 251.0
+offset_right = 254.337
 offset_bottom = 172.0
 scale = Vector2(0.855881, 0.81148)
 theme_override_constants/separation = 50
@@ -166,3 +180,67 @@ offset_top = 141.0
 offset_right = 219.0
 offset_bottom = 166.0
 color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 200.0
+offset_top = -2.0
+offset_right = 349.0
+offset_bottom = 277.0
+theme_override_constants/line_spacing = -2
+theme_override_fonts/font = SubResource("SystemFont_8awyr")
+theme_override_font_sizes/font_size = 9
+text = "
+Después de cada intento,
+ el sistema te dará pistas:
+
+🟩 Verde: número correcto 
+y en la posición correcta.
+
+🟨 Amarillo: número correcto 
+pero en otra posición.
+
+🟥 Rojo: el número no está
+en la contraseña.
+
+Usa las pistas para deducir
+ la combinación correcta.
+Tienes solo 10 intentos antes 
+de que el virus vuelva a
+ alterar el código."
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = -77.4895
+offset_top = -56.5037
+offset_right = 335.51
+offset_bottom = 84.4963
+theme_override_fonts/font = SubResource("SystemFont_vhrvy")
+theme_override_font_sizes/font_size = 9
+text = "El virus corrompido el sistema y cambia constantemente las contraseñas.
+Debes descifrar el código secreto de X números para desbloquear la llave y avanzar.
+"
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 199.517
+offset_top = 23.649
+offset_right = 211.517
+offset_bottom = 34.649
+color = Color(0.305882, 1, 0.568627, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 200.212
+offset_top = 44.9222
+offset_right = 212.212
+offset_bottom = 55.9222
+color = Color(1, 1, 0.188235, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 200.212
+offset_top = 67.0324
+offset_right = 212.212
+offset_bottom = 78.0324
+color = Color(1, 0.0588235, 0, 1)
