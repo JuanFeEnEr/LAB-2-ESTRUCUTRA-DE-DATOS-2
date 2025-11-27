@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://rrno8k2bfe8"
+path="res://.godot/imported/D1.dialogue-3c8f329907e14bd03096c5466701c966.tres"
+
+[deps]
+
+source_file="res://Carpeta_MARI/Dialogos/D1.dialogue"
+dest_files=["res://.godot/imported/D1.dialogue-3c8f329907e14bd03096c5466701c966.tres"]
+
+[params]
+
+defaults=true

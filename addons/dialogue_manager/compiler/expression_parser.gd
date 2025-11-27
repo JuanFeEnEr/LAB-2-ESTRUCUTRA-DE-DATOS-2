@@ -98,7 +98,7 @@ func _build_token_tree(tokens: Array[Dictionary], line_type: String, expected_cl
 
 		var error = _check_next_token(token, tokens, line_type, expected_close_token)
 		if error != OK:
-			var error_token: Dictionary = tokens[1] if tokens.size() > 1 else token
+			var error_token: Dictionary = tokens[0] if tokens.size() > 0 else token
 			return [_build_token_tree_error(tree, error, error_token.index), tokens]
 
 		match token.type:
@@ -275,15 +275,22 @@ func _build_token_tree(tokens: Array[Dictionary], line_type: String, expected_cl
 				})
 
 			DMConstants.TOKEN_NUMBER:
-				var value = token.value.to_float() if "." in token.value else token.value.to_int()
+				var value_str: String = token.value
+				var value: float = 0.0
+				
+				if "." in value_str:
+					value = value_str.to_float()
+				else:
+					value = value_str.to_int()
+				
 				# If previous token is a number and this one is a negative number then
 				# inject a minus operator token in between them.
-				if tree.size() > 0 and token.value.begins_with("-") and tree[tree.size() - 1].type == DMConstants.TOKEN_NUMBER:
-					tree.append(({
+				if tree.size() > 0 and value_str.begins_with("-") and tree[tree.size() - 1].type == DMConstants.TOKEN_NUMBER:
+					tree.append({
 						type = DMConstants.TOKEN_OPERATOR,
 						value = "-",
 						i = token.index
-					}))
+					})
 					tree.append({
 						type = token.type,
 						value = -1 * value,
@@ -297,7 +304,9 @@ func _build_token_tree(tokens: Array[Dictionary], line_type: String, expected_cl
 					})
 
 	if expected_close_token != "":
-		var index: int = tokens[0].i if tokens.size() > 0 else 0
+		var index: int = 0
+		if tokens.size() > 0:
+			index = tokens[0].i
 		return [_build_token_tree_error(tree, DMConstants.ERR_MISSING_CLOSING_BRACKET, index), tokens]
 
 	return [tree, tokens]
@@ -514,8 +523,8 @@ func _tokens_to_dictionary(tokens: Array[Dictionary]) -> Dictionary:
 # Work out what the next token is from a string.
 func _find_match(input: String) -> Dictionary:
 	for key in regex.TOKEN_DEFINITIONS.keys():
-		var regex = regex.TOKEN_DEFINITIONS.get(key)
-		var found = regex.search(input)
+		var regex_pattern = regex.TOKEN_DEFINITIONS.get(key)
+		var found = regex_pattern.search(input)
 		if found:
 			return {
 				type = key,

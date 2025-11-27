@@ -1,0 +1,90 @@
+[gd_scene load_steps=12 format=3 uid="uid://ccaamksesahvi"]
+
+[ext_resource type="Script" uid="uid://ywo4sev7i8tv" path="res://Carpeta_MARI/Script1/puerta.gd" id="1_1op4h"]
+[ext_resource type="Texture2D" uid="uid://cuig8iqwcv7af" path="res://Carpeta_MARI/Mapas/tiles_laboratory_LandOfPixels/tiles_laboratory_LandOfPixels/48px/tilesStuff.png" id="2_v7hp3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ylh6m"]
+size = Vector2(296.569, 158.003)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ylh6m"]
+atlas = ExtResource("2_v7hp3")
+region = Rect2(100, 337, 335, 143)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hgxfh"]
+atlas = ExtResource("2_v7hp3")
+region = Rect2(435, 623, 335, 143)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_su2wy"]
+atlas = ExtResource("2_v7hp3")
+region = Rect2(100, 194, 335, 143)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7u6f8"]
+atlas = ExtResource("2_v7hp3")
+region = Rect2(435, 480, 335, 143)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_imcla"]
+atlas = ExtResource("2_v7hp3")
+region = Rect2(20, 482, 292, 143)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rbcj5"]
+atlas = ExtResource("2_v7hp3")
+region = Rect2(435, 194, 335, 143)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_su2wy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ylh6m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hgxfh")
+}],
+"loop": true,
+"name": &"Abierta",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_su2wy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7u6f8")
+}],
+"loop": true,
+"name": &"Abrir",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_imcla")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rbcj5")
+}],
+"loop": true,
+"name": &"Cerrada",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hgxfh"]
+size = Vector2(250, 92)
+
+[node name="Area2D" type="Area2D" node_paths=PackedStringArray("pared_colision")]
+script = ExtResource("1_1op4h")
+pared_colision = NodePath("StaticBody2D/CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(344, 764)
+rotation = -0.0077072
+shape = SubResource("RectangleShape2D_ylh6m")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(344, 778)
+sprite_frames = SubResource("SpriteFrames_su2wy")
+animation = &"Cerrada"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(346, 789)
+shape = SubResource("RectangleShape2D_hgxfh")
