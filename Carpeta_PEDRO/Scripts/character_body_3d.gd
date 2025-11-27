@@ -74,10 +74,10 @@ func _physics_process(delta):
 	var forward = 0.0
 	var right = 0.0
 
-	if Input.is_key_pressed(KEY_W): forward += 1.0
-	if Input.is_key_pressed(KEY_S): forward -= 1.0
-	if Input.is_key_pressed(KEY_D): right += 1.0
-	if Input.is_key_pressed(KEY_A): right -= 1.0
+	if Input.is_key_pressed(KEY_D): forward += 1.0
+	if Input.is_key_pressed(KEY_A): forward -= 1.0
+	if Input.is_key_pressed(KEY_S): right += 1.0
+	if Input.is_key_pressed(KEY_W): right -= 1.0
 	var up = 0.0
 	if Input.is_key_pressed(KEY_SPACE): up += 1.0
 	if Input.is_key_pressed(KEY_CTRL): up -= 1.0
