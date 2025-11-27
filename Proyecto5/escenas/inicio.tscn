@@ -1,0 +1,71 @@
+[gd_scene load_steps=5 format=3 uid="uid://ociow4apehsj"]
+
+[ext_resource type="Shader" uid="uid://dd6fy8k21h04n" path="res://Proyecto5/escenas/inicio.gdshader" id="1_ls1sc"]
+[ext_resource type="Script" uid="uid://0iavev3kthxk" path="res://Proyecto5/escenas/inicio.gd" id="2_5a4p3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5a4p3"]
+shader = ExtResource("1_ls1sc")
+shader_parameter/cyber_color = Color(1, 0.1, 0.1, 1)
+shader_parameter/background_color = Color(0.05, 0, 0, 1)
+shader_parameter/grid_size = 40.0
+shader_parameter/scroll_speed = 0.8
+shader_parameter/glitch_intensity = 0.03
+shader_parameter/scan_beam_width = 0.15
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_joj0b"]
+shader = ExtResource("1_ls1sc")
+shader_parameter/cyber_color = Color(1, 0.1, 0.1, 1)
+shader_parameter/background_color = Color(0.05, 0, 0, 1)
+shader_parameter/grid_size = 40.0
+shader_parameter/scroll_speed = 0.8
+shader_parameter/glitch_intensity = 0.03
+shader_parameter/scan_beam_width = 0.15
+
+[node name="MenuInicio" type="Control"]
+material = SubResource("ShaderMaterial_5a4p3")
+layout_mode = 3
+anchors_preset = 0
+offset_left = -2.0
+offset_right = 1152.0
+offset_bottom = 648.0
+script = ExtResource("2_5a4p3")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1153.0
+offset_bottom = 648.0
+
+[node name="PanelHistoria" type="Panel" parent="."]
+material = SubResource("ShaderMaterial_joj0b")
+layout_mode = 0
+offset_right = 1154.0
+offset_bottom = 649.0
+
+[node name="TextureRect" type="TextureRect" parent="PanelHistoria"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextoHistoria" type="RichTextLabel" parent="PanelHistoria"]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 32.0
+offset_right = 916.0
+offset_bottom = 311.0
+
+[node name="BtnJugar" type="Button" parent="."]
+layout_mode = 0
+offset_left = 460.0
+offset_top = 468.0
+offset_right = 647.0
+offset_bottom = 526.0
+
+[node name="Label" type="Label" parent="BtnJugar"]
+layout_mode = 0
+offset_left = 78.0
+offset_top = 11.0
+offset_right = 185.0
+offset_bottom = 66.0
+text = "Jugar"
+
+[connection signal="pressed" from="BtnJugar" to="." method="_on_btn_jugar_pressed"]
