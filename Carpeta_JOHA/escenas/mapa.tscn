@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://bsurdh6g0cajg"]
+[gd_scene load_steps=10 format=4 uid="uid://bsurdh6g0cajg"]
 
 [ext_resource type="Texture2D" uid="uid://bht1tglcojcwh" path="res://Carpeta_JOHA/imagenes/1281520.jpg" id="1_htwh5"]
 [ext_resource type="Texture2D" uid="uid://msjdmrhft4pr" path="res://Carpeta_JOHA/imagenes/atlas_walls_high-16x32.png" id="1_ob2sx"]
 [ext_resource type="PackedScene" uid="uid://1vq20chrntbd" path="res://Carpeta_JOHA/escenas/jugador.tscn" id="3_20xsi"]
 [ext_resource type="PackedScene" uid="uid://bj6udlt14bv0v" path="res://Carpeta_JOHA/escenas/enemigo.tscn" id="4_kd5a8"]
+[ext_resource type="PackedScene" uid="uid://rrdyrags1g2t" path="res://Carpeta_JOHA/escenas/MonitorUI.tscn" id="5_eb1sw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_20xsi"]
 texture = ExtResource("1_htwh5")
@@ -672,8 +673,48 @@ position = Vector2(-60, 61)
 punto_a = NodePath("../PuntoA")
 punto_b = NodePath("../PuntoB")
 
+[node name="fantasma2" parent="." node_paths=PackedStringArray("punto_a", "punto_b") instance=ExtResource("4_kd5a8")]
+position = Vector2(481, 62)
+punto_a = NodePath("../PuntoC")
+punto_b = NodePath("../PuntoD")
+
+[node name="fantasma3" parent="." node_paths=PackedStringArray("punto_a", "punto_b") instance=ExtResource("4_kd5a8")]
+position = Vector2(49, -239)
+punto_a = NodePath("../PuntoE")
+punto_b = NodePath("../PuntoF")
+
+[node name="fantasma4" parent="." node_paths=PackedStringArray("punto_a", "punto_b") instance=ExtResource("4_kd5a8")]
+position = Vector2(495, -239)
+punto_a = NodePath("../PuntoG")
+punto_b = NodePath("../PuntoH")
+es_el_elegido = true
+
 [node name="PuntoA" type="Marker2D" parent="."]
 position = Vector2(41, 471)
 
 [node name="PuntoB" type="Marker2D" parent="."]
 position = Vector2(359, 475)
+
+[node name="PuntoC" type="Marker2D" parent="."]
+position = Vector2(606, 483)
+
+[node name="PuntoD" type="Marker2D" parent="."]
+position = Vector2(956, 478)
+
+[node name="PuntoE" type="Marker2D" parent="."]
+position = Vector2(379, 180)
+
+[node name="PuntoF" type="Marker2D" parent="."]
+position = Vector2(42, 180)
+
+[node name="PuntoG" type="Marker2D" parent="."]
+position = Vector2(906, 180)
+
+[node name="PuntoH" type="Marker2D" parent="."]
+position = Vector2(506, 178)
+
+[node name="MonitorUi" parent="." instance=ExtResource("5_eb1sw")]
+offset_left = -55.0
+offset_top = 4.0
+offset_right = -55.0
+offset_bottom = 4.0

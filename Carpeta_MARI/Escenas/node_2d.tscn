@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://qtuoms4ayhwc"]
+[gd_scene load_steps=3 format=3 uid="uid://dg6ja7agxggn8"]
 
 [ext_resource type="Script" uid="uid://u7fo8hxx4hkf" path="res://Script1/Pantalla1.gd" id="1_h3eif"]
 [ext_resource type="Texture2D" uid="uid://brxoa8rxgcbvk" path="res://Mapas/Fondos/Protocolo de Contención.jpg" id="2_iijfg"]

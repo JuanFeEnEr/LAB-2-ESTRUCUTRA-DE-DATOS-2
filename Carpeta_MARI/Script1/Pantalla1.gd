@@ -25,3 +25,7 @@ func _on_button_pressed():
 	# queue_free() elimina este nodo (el menú) y todos sus hijos 
 	# de forma segura al final del frame.
 	queue_free()
+
+
+func _on_salir_pressed() -> void:
+	get_tree().quit()

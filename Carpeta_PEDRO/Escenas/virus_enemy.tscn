@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://b4septjgnw1sx"]
+
+[ext_resource type="Script" uid="uid://si4e55e0v1fi" path="res://Carpeta_PEDRO/Scripts/virus_enemy.gd" id="1_xip4k"]
+[ext_resource type="Texture2D" uid="uid://dhr7gjf88jcx4" path="res://Carpeta_PEDRO/Diseños/vecteezy_3d-icon-virus-lock-cyber-security-illustration-concept-icon_25277621.png" id="2_i41ho"]
+[ext_resource type="ArrayMesh" uid="uid://qttvwtsey5mb" path="res://Carpeta_PEDRO/Diseños/ComputerVirus.obj" id="3_vhubn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5f0ey"]
+albedo_texture = ExtResource("2_i41ho")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vhubn"]
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+script = ExtResource("1_xip4k")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_5f0ey")
+mesh = ExtResource("3_vhubn")
+
+[node name="ShootTimer" type="Timer" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_vhubn")
