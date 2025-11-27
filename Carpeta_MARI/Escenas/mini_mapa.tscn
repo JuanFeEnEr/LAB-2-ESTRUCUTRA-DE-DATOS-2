@@ -1,0 +1,113 @@
+[gd_scene load_steps=3 format=3 uid="uid://dba30tnaifna"]
+
+[ext_resource type="Script" uid="uid://c2eyyou2mxi6o" path="res://Script1/recorrido.gd" id="1_hni63"]
+[ext_resource type="Texture2D" uid="uid://dfu1fqkkmw3ik" path="res://Mapas/Fondos/Mapa.png" id="2_pgd40"]
+
+[node name="MiniMapa" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_right = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hni63")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1155.0
+offset_bottom = 515.0
+
+[node name="Mapa" type="Sprite2D" parent="."]
+position = Vector2(618, 275)
+scale = Vector2(1.22046, 0.532227)
+texture = ExtResource("2_pgd40")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="A-B" type="Line2D" parent="Node2D"]
+position = Vector2(-15, -85)
+points = PackedVector2Array(192, 296, 191, 166, 362, 166)
+width = 20.0
+default_color = Color(0, 0.141176, 0.113725, 1)
+
+[node name="A-C" type="Line2D" parent="Node2D"]
+position = Vector2(-13, 115)
+points = PackedVector2Array(188, 159, 188, 296, 218.304, 294.924, 367, 295)
+width = 20.0
+default_color = Color(0, 0.141176, 0.113725, 1)
+
+[node name="B-D" type="Line2D" parent="Node2D"]
+points = PackedVector2Array(421, 86, 869, 88)
+width = 20.0
+default_color = Color(0, 0.141176, 0.113725, 1)
+
+[node name="D-E" type="Line2D" parent="Node2D"]
+points = PackedVector2Array(901, 100, 901, 387)
+width = 20.0
+default_color = Color(0, 0.141176, 0.113725, 1)
+
+[node name="C-E" type="Line2D" parent="Node2D"]
+points = PackedVector2Array(401, 403, 577.383, 403, 867, 403)
+width = 20.0
+default_color = Color(0, 0.141176, 0.113725, 1)
+
+[node name="D-F" type="Line2D" parent="Node2D"]
+position = Vector2(535, 7)
+points = PackedVector2Array(411, 85, 493, 85, 493, 216)
+width = 20.0
+default_color = Color(0, 0.141176, 0.113725, 1)
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SalaA" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_left = 108.0
+offset_top = 202.0
+offset_right = 194.0
+offset_bottom = 286.0
+color = Color(0.00174161, 0.140075, 0.114392, 1)
+
+[node name="SalaB" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_left = 345.0
+offset_top = 51.0
+offset_right = 431.0
+offset_bottom = 135.0
+color = Color(0, 0.141176, 0.113725, 1)
+
+[node name="SalaC" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_left = 347.0
+offset_top = 361.0
+offset_right = 433.0
+offset_bottom = 445.0
+color = Color(0, 0.141176, 0.113725, 1)
+
+[node name="SalaD" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_left = 859.0
+offset_top = 48.0
+offset_right = 945.0
+offset_bottom = 132.0
+color = Color(0, 0.141176, 0.113725, 1)
+
+[node name="SalaE" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_left = 852.0
+offset_top = 345.0
+offset_right = 938.0
+offset_bottom = 429.0
+color = Color(0, 0.141176, 0.113725, 1)
+
+[node name="SalaF" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_left = 989.0
+offset_top = 200.0
+offset_right = 1075.0
+offset_bottom = 284.0
+color = Color(0, 0.141176, 0.113725, 1)

@@ -1,0 +1,151 @@
+[gd_scene load_steps=7 format=3 uid="uid://iva5b8sn5a38"]
+
+[ext_resource type="Script" uid="uid://3ieyvh75ys31" path="res://Script1/HackPanel.gd" id="1_fep6j"]
+[ext_resource type="Texture2D" uid="uid://vti6im7krw0n" path="res://Mapas/Fondos/Contraseña.png" id="2_1a8cr"]
+[ext_resource type="Texture2D" uid="uid://bnht3x22bo52b" path="res://Mapas/Fondos/Historial.png" id="3_ux42s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1a8cr"]
+bg_color = Color(0.027451, 0.211765, 0.054902, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.356863, 0.670588, 0.372549, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_1a8cr"]
+font_names = PackedStringArray("Consolas")
+
+[sub_resource type="Theme" id="Theme_ux42s"]
+default_font = SubResource("SystemFont_1a8cr")
+default_font_size = 16
+
+[node name="HackPanel" type="Control" node_paths=PackedStringArray("display_label", "history_container", "keypad_grid")]
+layout_mode = 3
+anchor_right = 0.117
+anchor_bottom = 0.031
+offset_left = 466.0
+offset_top = 115.0
+offset_right = 371.216
+offset_bottom = 134.912
+scale = Vector2(3.78378, 3.63492)
+script = ExtResource("1_fep6j")
+display_label = NodePath("HBoxContainer/VBoxContainer/Label")
+history_container = NodePath("HBoxContainer/HistoryScroll/VBoxContainer")
+keypad_grid = NodePath("HBoxContainer/VBoxContainer/GridContainer")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -14.0
+offset_top = -35.0
+offset_right = 219.0
+offset_bottom = 159.0
+color = Color(0, 0, 0, 1)
+
+[node name="Contraseña" type="Sprite2D" parent="."]
+position = Vector2(0.759828, 64.2893)
+scale = Vector2(0.192601, 0.188769)
+texture = ExtResource("2_1a8cr")
+
+[node name="Historial" type="Sprite2D" parent="."]
+position = Vector2(120.889, 64.3226)
+scale = Vector2(0.19232, 0.195689)
+texture = ExtResource("3_ux42s")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = -77.0
+offset_top = -7.0
+offset_right = 251.0
+offset_bottom = 172.0
+scale = Vector2(0.855881, 0.81148)
+theme_override_constants/separation = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 8
+columns = 3
+
+[node name="Button 1" type="Button" parent="HBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_1a8cr")
+text = " 1  "
+
+[node name="Button2" type="Button" parent="HBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_1a8cr")
+text = " 2  "
+
+[node name="Button3" type="Button" parent="HBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_1a8cr")
+text = "3
+"
+
+[node name="Button4" type="Button" parent="HBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_1a8cr")
+text = "4
+"
+
+[node name="Button5" type="Button" parent="HBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_1a8cr")
+text = "5
+"
+
+[node name="Button6" type="Button" parent="HBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_1a8cr")
+text = "6
+"
+
+[node name="Button7" type="Button" parent="HBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_1a8cr")
+text = "7
+"
+
+[node name="Button8" type="Button" parent="HBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_1a8cr")
+text = "8
+"
+
+[node name="Button9" type="Button" parent="HBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_1a8cr")
+text = "9
+"
+
+[node name="C" type="Button" parent="HBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_1a8cr")
+text = "C"
+
+[node name="Button 0" type="Button" parent="HBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_1a8cr")
+text = "0"
+
+[node name="OK" type="Button" parent="HBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_1a8cr")
+text = "OK"
+
+[node name="HistoryScroll" type="ScrollContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_ux42s")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/HistoryScroll"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
