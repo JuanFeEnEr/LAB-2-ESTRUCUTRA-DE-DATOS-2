@@ -13,7 +13,7 @@ const GAME_SCENE_PATH := "res://Carpeta_PEDRO/Escenas/level_1.tscn"
 @onready var texto_historia = $PanelHistoria/TextoHistoria
 
 # --- CONFIGURACIÓN ---
-var typing_speed: float = 0.03
+var typing_speed: float = 0.015
 
 # Historia: Misión 3 (MST/RebuildNet)
 var story_lines: Array = [
