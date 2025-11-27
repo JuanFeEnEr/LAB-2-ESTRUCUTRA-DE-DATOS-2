@@ -4,7 +4,7 @@ extends Node2D # O el tipo de nodo principal que estés usando
 
 # Ruta a la escena a la que quieres cambiar.
 # IMPORTANTE: Godot usa rutas relativas al proyecto, que siempre inician con "res://".
-const NEXT_SCENE_PATH = "res://Escenas/Historia.tscn"
+const NEXT_SCENE_PATH = "res://Carpeta_MARI/Escenas/Historia.tscn"
 
 # --- Función Conectada al Botón ---
 func _on_button_pressed():

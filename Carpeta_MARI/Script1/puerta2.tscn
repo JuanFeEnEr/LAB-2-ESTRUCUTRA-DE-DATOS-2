@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://dttaql0l5ea5j"]
+[gd_scene load_steps=8 format=3 uid="uid://dttaql0l5ea5j"]
 
-[ext_resource type="Script" uid="uid://cyqvu7rrqawey" path="res://Script1/puerta.gd" id="1_nax02"]
-[ext_resource type="Texture2D" uid="uid://cuig8iqwcv7af" path="res://Mapas/tiles_laboratory_LandOfPixels/tiles_laboratory_LandOfPixels/48px/tilesStuff.png" id="2_sruy6"]
+[ext_resource type="Texture2D" uid="uid://cuig8iqwcv7af" path="res://Carpeta_MARI/Mapas/tiles_laboratory_LandOfPixels/tiles_laboratory_LandOfPixels/48px/tilesStuff.png" id="2_sruy6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b05b0"]
 size = Vector2(102.759, 303.051)
@@ -48,9 +47,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_on4gj"]
 size = Vector2(35, 283)
 
-[node name="Area2D" type="Area2D" node_paths=PackedStringArray("pared_colision")]
-script = ExtResource("1_nax02")
-pared_colision = NodePath("StaticBody2D/CollisionShape2D")
+[node name="Area2D" type="Area2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(352, 772)

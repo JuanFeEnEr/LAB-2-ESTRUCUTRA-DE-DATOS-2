@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://dxrqfof7uhh5v"]
 
-[ext_resource type="Script" uid="uid://3ieyvh75ys31" path="res://Script1/HackPanel.gd" id="1_wolt4"]
-[ext_resource type="Texture2D" uid="uid://vti6im7krw0n" path="res://Mapas/Fondos/Contraseña.png" id="2_cvai0"]
-[ext_resource type="Texture2D" uid="uid://bnht3x22bo52b" path="res://Mapas/Fondos/Historial.png" id="3_sm5w0"]
+[ext_resource type="Script" uid="uid://3ieyvh75ys31" path="res://Carpeta_MARI/Script1/HackPanel.gd" id="1_wolt4"]
+[ext_resource type="Texture2D" uid="uid://vti6im7krw0n" path="res://Carpeta_MARI/Mapas/Fondos/Contraseña.png" id="2_cvai0"]
+[ext_resource type="Texture2D" uid="uid://bnht3x22bo52b" path="res://Carpeta_MARI/Mapas/Fondos/Historial.png" id="3_sm5w0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1a8cr"]
 bg_color = Color(0.027451, 0.211765, 0.054902, 1)
