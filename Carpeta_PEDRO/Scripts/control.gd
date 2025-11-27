@@ -2,7 +2,7 @@ extends Control
 
 # --- RUTA A TU JUEGO ---
 # Asegúrate de que esta ruta sea exacta a donde tienes tu MainGame.tscn
-const GAME_SCENE_PATH := "res://Carpeta_PEDRO/Escenas/level_1.tscn"
+const GAME_SCENE_PATH := "res://Carpeta_JUAN/Escenas/GraphManager.tscn"
 
 # --- REFERENCIAS A NODOS (Deben ser exactas) ---
 # Si te da error aquí, borra la línea y escribe "$" para buscar el nodo tú mismo.
@@ -17,20 +17,20 @@ var typing_speed: float = 0.03
 
 # Historia: Misión 3 (MST/RebuildNet)
 var story_lines: Array = [
-	"[color=#00FFFF]> INFORME DE MISIÓN 3: REBUILDNET[/color]",
-	"[color=#FF0000]>> ALERTA: RED FÍSICA COLAPSADA <<[/color]",
+	"[color=#00FFFF]> INFORME DE MISIÓN 4: HEAL THE NET![/color]",
+	"[color=#FF0000]>> ALERTA: COMPUTADORES COMPROMETIDOS <<[/color]",
 	"",
-	"NEMESIS ha detonado los nodos principales.",
-	"La infraestructura global está desconectada.",
+	"Haz logrado reconectar la red... pero el daño esta hecho.",
+	"Un viruz esta acabando con el sistema.",
 	"",
-	"[color=#FFFF00]> PROTOCOLO 'CYBER-DRONE' ACTIVADO[/color]",
-	"Hemos desplegado un dron de reparación bajo tu mando.",
-	"TU OBJETIVO: Reconectar los servidores aislados.",
+	"[color=#FFFF00]> PROTOCOLO 'ANTI-VIRUS' ACTIVADO[/color]",
+	"Con la red restaurada debes escoger el camino correcto para purgar el virus.",
+	"TU OBJETIVO: Destruye el virus, escoge la ruta correcta.",
 	"",
 	"[color=#00FF00]> INSTRUCCIONES (MST):[/color]",
-	"1. Usa el algoritmo de Árbol de Expansión Mínima (Prim).",
-	"2. Conecta TODOS los nodos gastando la menor energía posible.",
-	"3. Evita rutas costosas o el sistema fallará.",
+	"1. Usa el algoritmo de flujo maximo (Ford-Fulkerson o Edmonds-karp).",
+	"2. Establece una ruta adecuada desde el equipo S hasta T.",
+	"3. Maximiza el flujo del anti-virus.",
 	"",
 	"Esperando enlace neural..."
 ]
