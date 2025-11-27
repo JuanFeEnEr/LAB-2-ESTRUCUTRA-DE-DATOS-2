@@ -8,66 +8,98 @@ extends CharacterBody2D
 var objetivo_actual = null
 var gravedad = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-# --- ESTA ES LA CLAVE PARA QUE NO SE VUELVA LOCO ---
 var en_pausa = false 
+var esta_muerto = false # NUEVA VARIABLE: Para saber si ya murió
 
 func _ready():
 	if $AnimatedSprite2D: $AnimatedSprite2D.play("caminar")
 	
+	# Preparamos el área de daño para detectar al jugador
+	if $AreaDano:
+		# Conectar señal si no lo has hecho en el editor
+		if not $AreaDano.body_entered.is_connected(_on_body_entered):
+			$AreaDano.body_entered.connect(_on_body_entered)
+
 	if punto_a and punto_b:
-		# Empezamos yendo hacia el B (hacia la derecha)
 		objetivo_actual = punto_b 
-		print("Fantasma iniciado. Voy hacia: ", objetivo_actual.name)
+		print("Fantasma iniciado en: ", name)
 	else:
 		print("ERROR: FALTAN PUNTOS EN ", name)
 
 func _physics_process(delta):
-	# 1. Gravedad
-	if not is_on_floor():
-		velocity.y += gravedad * delta
+	# 1. GRAVEDAD SIEMPRE (Vital para que caiga al morir)
+	# Quitamos el 'if not is_on_floor()' para que caiga incluso si atravesamos suelo
+	velocity.y += gravedad * delta
 
-	# SI ESTAMOS EN PAUSA, NO CALCULAMOS MOVIMIENTO
+	# --- SI ESTÁ MUERTO: SOLO CAE ---
+	if esta_muerto:
+		move_and_slide()
+		return # <--- AQUÍ TERMINA EL CÓDIGO SI ESTÁ MUERTO
+	
+	# --- SI ESTÁ VIVO: PATRULLA ---
 	if en_pausa:
 		move_and_slide()
-		return # <--- Salimos de la función aquí mismo
+		return
 
 	if punto_a and punto_b and objetivo_actual:
-		
-		# 2. Calcular distancia
 		var diferencia_x = objetivo_actual.global_position.x - global_position.x
 		
-		# 3. Moverse si estamos lejos (Mayor a 10 pixeles)
 		if abs(diferencia_x) > 10:
 			var direccion = sign(diferencia_x)
 			velocity.x = direccion * velocidad
-			
-			if $AnimatedSprite2D:
-				$AnimatedSprite2D.flip_h = (direccion < 0)
-		
-		# 4. LLEGADA
+			if $AnimatedSprite2D: $AnimatedSprite2D.flip_h = (direccion < 0)
 		else:
-			# Llegamos (estamos a menos de 10 pixeles)
 			llegar_y_cambiar()
 	
 	move_and_slide()
 
 func llegar_y_cambiar():
-	# Activamos el semáforo en ROJO
 	en_pausa = true 
-	velocity.x = 0 # Frenamos en seco
-	
-	print("Llegué a ", objetivo_actual.name, ". Esperando un momento...")
-	
-	# Esperamos 0.5 segundos (o lo que quieras)
+	velocity.x = 0 
 	await get_tree().create_timer(0.5).timeout
 	
-	# Cambiamos el objetivo
-	if objetivo_actual == punto_a:
-		objetivo_actual = punto_b
-		print("¡Cambio! Ahora voy a la DERECHA (Punto B)")
-	else:
-		objetivo_actual = punto_a
-		print("¡Cambio! Ahora voy a la IZQUIERDA (Punto A)")
+	if objetivo_actual == punto_a: objetivo_actual = punto_b
+	else: objetivo_actual = punto_a
 	
-	# Activamos el semáforo en VERDE
-	en_pausa = false
+	en_pausa = false 
+
+# --- ESTA FUNCIÓN MATA AL JUGADOR SI LO TOCA ---
+func _on_body_entered(body):
+	if body.name == "Jugador" or body.is_in_group("jugador"):
+		if not esta_muerto:
+			print("Maté al jugador")
+			# Aquí reinicias la escena si quieres:
+			# get_tree().reload_current_scene()
+
+# --- ESTA FUNCIÓN ES LA QUE LLAMA LA ESPADA ---
+func morir():
+	if esta_muerto: return # Si ya está muerto, ignorar
+	
+	print("¡AGHHH! Me muero (Caída dramática)")
+	esta_muerto = true # Activamos estado de muerte
+	
+	# 1. EFECTO DE SALTO (La agonía)
+	velocity.y = -300 # Saltito hacia arriba
+	velocity.x = 0    # Deja de avanzar
+	
+	# 2. DESACTIVAR COLISIONES FÍSICAS (Para que atraviese el suelo)
+	# IMPORTANTE: Busca tu CollisionShape2D y asegúrate que se llame así
+	if has_node("CollisionShape2D"):
+		$CollisionShape2D.set_deferred("disabled", true)
+	
+	# 3. DESACTIVAR ÁREA DE DAÑO (Para que no mate al jugador mientras cae)
+	if has_node("AreaDano"):
+		$AreaDano.set_deferred("monitoring", false)
+	
+	# 4. EFECTO VISUAL (Opcional: Voltear patas arriba o poner rojo)
+	modulate = Color(1, 0, 0) # Se pone rojo
+	if $AnimatedSprite2D: $AnimatedSprite2D.stop() # Pausar animación
+	
+	# 5. LÓGICA DEL JUEGO (UI)
+	if es_el_elegido:
+		print("¡Liberando mapa!")
+		get_tree().call_group("ui_monitor", "mostrar_mapa_completo")
+	
+	# 6. ESPERAR A QUE CAIGA Y LUEGO BORRAR
+	await get_tree().create_timer(3.0).timeout # Esperamos 3 segundos cayendo
+	queue_free()
