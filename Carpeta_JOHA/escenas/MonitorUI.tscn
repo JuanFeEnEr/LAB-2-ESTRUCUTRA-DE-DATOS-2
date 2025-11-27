@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://rrdyrags1g2t"]
+[gd_scene load_steps=4 format=3 uid="uid://rrdyrags1g2t"]
 
 [ext_resource type="Script" uid="uid://bdbtgurie1txp" path="res://Carpeta_JOHA/escenas/monitor_ui.gd" id="1_uo17t"]
+[ext_resource type="Texture2D" uid="uid://3gm44s34u5ij" path="res://Carpeta_JOHA/imagenes/grafo.png" id="2_dwd5i"]
+[ext_resource type="Texture2D" uid="uid://c31mi0cnaisgb" path="res://Carpeta_JOHA/imagenes/camino_corto.png" id="3_x34bt"]
 
-[node name="MonitorUi" type="Control"]
+[node name="MonitorUi" type="Control" groups=["ui_monitor"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,11 +15,25 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_uo17t")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="FondoApagado" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = -0.034
-anchor_bottom = -0.034
-offset_top = -0.083999634
-offset_right = 162.0
-offset_bottom = 176.916
+anchor_left = -6.0720005
+anchor_top = -2.684
+anchor_right = -6.0720005
+anchor_bottom = -2.684
+offset_left = 997.7361
+offset_top = 464.016
+offset_right = 1150.7361
+offset_bottom = 635.016
+texture = ExtResource("2_dwd5i")
+expand_mode = 1
+
+[node name="FondoEncendido" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 10.0
+offset_right = 165.0
+offset_bottom = 174.0
+texture = ExtResource("3_x34bt")
+expand_mode = 1
