@@ -9,7 +9,7 @@ const GAME_SCENE_PATH = "res://Proyecto5/escenas/MainGame.tscn"
 @onready var btn_jugar = $BtnJugar
 
 # --- HISTORIA: MISIÓN 5 (THE CORE) ---
-var typing_speed: float = 0.03
+var typing_speed: float = 0.015
 var story_lines: Array = [
 	"[color=#FF0000]> INFORME DE MISIÓN FINAL: THE CORE[/color]",
 	"[color=#FF0000]>> ESTADO CRÍTICO: NEMESIS EN EL NÚCLEO <<[/color]",
