@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="Codigo Seguro"
+<<<<<<< HEAD
 run/main_scene="uid://bsvp4mn0ot8fj"
 config/features=PackedStringArray("4.5", "GL Compatibility")
+=======
+run/main_scene="res://Carpeta_MARI/Escenas/node_2d.tscn"
+config/features=PackedStringArray("4.4", "GL Compatibility")
+>>>>>>> 329df34d2e3fdf1b5c24c6318d656170e2cc52f9
 config/icon="res://icon.svg"
 
 [autoload]

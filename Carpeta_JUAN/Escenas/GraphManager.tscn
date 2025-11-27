@@ -27,20 +27,28 @@ position = Vector2(119, 348)
 node_id = "S"
 
 [node name="A" parent="Graph Manager/Nodes" instance=ExtResource("2_bvj2y")]
-position = Vector2(393, 195)
+position = Vector2(378.00003, 188)
 node_id = "A"
 
 [node name="B" parent="Graph Manager/Nodes" instance=ExtResource("2_bvj2y")]
-position = Vector2(386, 478)
+position = Vector2(374, 469)
 node_id = "B"
 
 [node name="C" parent="Graph Manager/Nodes" instance=ExtResource("2_bvj2y")]
-position = Vector2(812, 209)
+position = Vector2(811.00006, 188)
 node_id = "C"
 
 [node name="D" parent="Graph Manager/Nodes" instance=ExtResource("2_bvj2y")]
-position = Vector2(810, 477)
+position = Vector2(824, 464)
 node_id = "D"
+
+[node name="E" parent="Graph Manager/Nodes" instance=ExtResource("2_bvj2y")]
+position = Vector2(586.00006, 333)
+node_id = "E"
+
+[node name="F" parent="Graph Manager/Nodes" instance=ExtResource("2_bvj2y")]
+position = Vector2(817, 328)
+node_id = "F"
 
 [node name="T" parent="Graph Manager/Nodes" instance=ExtResource("2_bvj2y")]
 position = Vector2(1055, 354)
@@ -51,30 +59,57 @@ node_id = "T"
 [node name="Edge_SA" parent="Graph Manager/Edges" instance=ExtResource("3_u8hc4")]
 from_id = "S"
 to_id = "A"
-capacity = 3
+capacity = 9
 
 [node name="Edge_SB" parent="Graph Manager/Edges" instance=ExtResource("3_u8hc4")]
 from_id = "S"
 to_id = "B"
-capacity = 4
+capacity = 7
 
 [node name="Edge_AC" parent="Graph Manager/Edges" instance=ExtResource("3_u8hc4")]
 from_id = "A"
 to_id = "C"
+capacity = 12
+
+[node name="Edge_AE" parent="Graph Manager/Edges" instance=ExtResource("3_u8hc4")]
+from_id = "A"
+to_id = "E"
+capacity = 5
 
 [node name="Edge_BC" parent="Graph Manager/Edges" instance=ExtResource("3_u8hc4")]
 from_id = "B"
 to_id = "C"
+capacity = 3
 
 [node name="Edge_BD" parent="Graph Manager/Edges" instance=ExtResource("3_u8hc4")]
 from_id = "B"
 to_id = "D"
 capacity = 6
 
+[node name="Edge_BF" parent="Graph Manager/Edges" instance=ExtResource("3_u8hc4")]
+from_id = "B"
+to_id = "F"
+capacity = 6
+
+[node name="Edge_EF" parent="Graph Manager/Edges" instance=ExtResource("3_u8hc4")]
+from_id = "E"
+to_id = "F"
+capacity = 15
+
+[node name="Edge_FD" parent="Graph Manager/Edges" instance=ExtResource("3_u8hc4")]
+from_id = "F"
+to_id = "D"
+capacity = 8
+
+[node name="Edge_FT" parent="Graph Manager/Edges" instance=ExtResource("3_u8hc4")]
+from_id = "F"
+to_id = "T"
+capacity = 13
+
 [node name="Edge_CT" parent="Graph Manager/Edges" instance=ExtResource("3_u8hc4")]
 from_id = "C"
 to_id = "T"
-capacity = 5
+capacity = 7
 
 [node name="Edge_DT" parent="Graph Manager/Edges" instance=ExtResource("3_u8hc4")]
 from_id = "D"
@@ -89,10 +124,12 @@ offset_bottom = 40.0
 
 [node name="ChecarFlujo" type="Button" parent="UI"]
 layout_mode = 0
-offset_left = 40.0
-offset_top = 585.0
-offset_right = 161.0
-offset_bottom = 616.0
+offset_left = 32.0
+offset_top = 588.0
+offset_right = 195.0
+offset_bottom = 622.0
+theme_override_fonts/font = ExtResource("6_1xdj5")
+theme_override_font_sizes/font_size = 25
 text = "CHECAR FLUJO"
 
 [node name="PopupMessage" type="Popup" parent="UI"]
@@ -106,10 +143,12 @@ offset_bottom = 23.0
 
 [node name="ReiniciarFlujo" type="Button" parent="UI"]
 layout_mode = 0
-offset_left = 193.0
-offset_top = 587.0
-offset_right = 329.0
-offset_bottom = 618.0
+offset_left = 222.0
+offset_top = 589.0
+offset_right = 426.0
+offset_bottom = 623.0
+theme_override_fonts/font = ExtResource("6_1xdj5")
+theme_override_font_sizes/font_size = 25
 text = "REINICIAR FLUJO"
 
 [node name="Security Mayhem" type="Label" parent="."]

@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://dg6ja7agxggn8"]
 
-[ext_resource type="Script" uid="uid://u7fo8hxx4hkf" path="res://Script1/Pantalla1.gd" id="1_h3eif"]
-[ext_resource type="Texture2D" uid="uid://brxoa8rxgcbvk" path="res://Mapas/Fondos/Protocolo de Contención.jpg" id="2_iijfg"]
+[ext_resource type="Script" uid="uid://u7fo8hxx4hkf" path="res://Carpeta_MARI/Script1/Pantalla1.gd" id="1_h3eif"]
+[ext_resource type="Texture2D" uid="uid://brxoa8rxgcbvk" path="res://Carpeta_MARI/Mapas/Fondos/Protocolo de Contención.jpg" id="2_iijfg"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Inicio" type="Node2D"]
 script = ExtResource("1_h3eif")
 
 [node name="ProtocoloDeContención" type="Sprite2D" parent="."]
@@ -19,4 +19,13 @@ offset_bottom = 291.0
 text = "Play
 "
 
+[node name="salir" type="Button" parent="."]
+offset_left = 322.0
+offset_top = 485.0
+offset_right = 392.0
+offset_bottom = 525.0
+theme_override_font_sizes/font_size = 23
+text = "SALIR"
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="salir" to="." method="_on_salir_pressed"]

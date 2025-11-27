@@ -1,0 +1,81 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2aqbbgrdcieg"]
+
+[ext_resource type="Script" uid="uid://b1m4bydnnwxxj" path="res://Carpeta_PEDRO/Scripts/control.gd" id="1_ljrmr"]
+[ext_resource type="Shader" path="res://Carpeta_PEDRO/Escenas/control.gdshader" id="2_qjf2r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mobre"]
+shader = ExtResource("2_qjf2r")
+shader_parameter/cyber_color = Color(0, 1, 0.3, 0.8)
+shader_parameter/background_color = Color(0, 0.1, 0, 0.5)
+shader_parameter/grid_size = 50.0
+shader_parameter/scroll_speed = 0.5
+shader_parameter/glitch_intensity = 0.02
+shader_parameter/scan_beam_width = 0.1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hhk1q"]
+bg_color = Color(0, 0, 0, 1)
+corner_detail = 10
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ljrmr")
+
+[node name="PanelHistoria" type="Panel" parent="."]
+material = SubResource("ShaderMaterial_mobre")
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.009000001
+anchor_right = 0.99500006
+anchor_bottom = 1.0
+offset_top = -1.8320003
+offset_right = 7.7598877
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hhk1q")
+
+[node name="TextureRect" type="TextureRect" parent="PanelHistoria"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = -11.0
+offset_right = 1159.0
+offset_bottom = 646.0
+
+[node name="TextoHistoria" type="RichTextLabel" parent="PanelHistoria"]
+layout_mode = 0
+offset_left = 224.0
+offset_top = 33.0
+offset_right = 935.0
+offset_bottom = 329.0
+bbcode_enabled = true
+
+[node name="BtnJugar" type="Button" parent="."]
+layout_mode = 0
+offset_left = 468.0
+offset_top = 468.0
+offset_right = 689.0
+offset_bottom = 539.0
+
+[node name="Label" type="Label" parent="BtnJugar"]
+layout_mode = 0
+offset_left = 93.0
+offset_top = 20.0
+offset_right = 224.0
+offset_bottom = 63.0
+text = "jugar"
+
+[node name="TextureRect" type="TextureRect" parent="BtnJugar"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="pressed" from="BtnJugar" to="." method="_on_btn_jugar_pressed"]
