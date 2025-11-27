@@ -19,7 +19,6 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var wall_detector_left = $pared_izquierda   
 
 # --- NUEVOS NODOS (ESPADA) ---
-# Asegúrate de haber creado estos nodos hijos con estos nombres exactos
 @onready var pivote_espada = $PivoteEspada
 @onready var area_espada = $PivoteEspada/AreaEspada
 @onready var sprite_espada = $PivoteEspada/AreaEspada/SpriteEspada
@@ -29,15 +28,14 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var is_wall_sliding = false
 var last_on_wall_timer = 0.0 
 var jump_buffer_timer = 0.0 
-var atacando = false # Para no atacar infinitamente
+var atacando = false 
 
 func _ready():
-	# AL INICIAR: Ocultamos la espada y desactivamos su colisión automáticamente
+	# Configuración inicial de la espada
 	if sprite_espada: sprite_espada.visible = false
 	if colision_espada: colision_espada.disabled = true
 	
-	# CONEXIÓN AUTOMÁTICA DE LA ESPADA (Para ahorrarte pasos manuales)
-	# Esto conecta la señal body_entered con la función _on_espada_impacto
+	# Conexión automática de señal
 	if area_espada:
 		if not area_espada.body_entered.is_connected(_on_espada_impacto):
 			area_espada.body_entered.connect(_on_espada_impacto)
@@ -55,26 +53,27 @@ func _physics_process(delta):
 	if Input.is_action_pressed("ui_left"): 
 		direction_x_input -= 1 
 
+	# --- [CORRECCIÓN PRINCIPAL] SINCRONIZACIÓN ESPADA/SPRITE ---
 	
-	# --- BLOQUE CORREGIDO DE DIRECCIÓN Y ESPADA ---
-	if direction_x_input != 0:
-		# Guardamos la posición original (valor absoluto) para no perderla
-		var distancia_mano = abs(pivote_espada.position.x)
-		
-		if direction_x_input > 0: # DERECHA
-			sprite_node.flip_h = false
-			pivote_espada.scale.x = 1 # Espada normal
-			pivote_espada.position.x = distancia_mano # Mano a la derecha
-		
-		elif direction_x_input < 0: # IZQUIERDA
-			sprite_node.flip_h = true
-			pivote_espada.scale.x = -1 # Espada volteada
-			pivote_espada.position.x = -distancia_mano # Mano a la izquierda
-	else: # Si mira a la derecha
-		pivote_espada.scale.x = 1 # Espada normal a la derecha
+	# 1. Primero actualizamos hacia dónde mira el sprite si nos estamos moviendo
+	if direction_x_input > 0:
+		sprite_node.flip_h = false # Mira derecha
+	elif direction_x_input < 0:
+		sprite_node.flip_h = true # Mira izquierda
+	
+	# 2. Ahora obligamos a la espada a mirar a donde mire el sprite (incluso quietos)
+	# Usamos un valor fijo de distancia (ej: 20 pixeles) o la actual si ya está configurada
+	var distancia_mano = 20 
+	if abs(pivote_espada.position.x) > 0: distancia_mano = abs(pivote_espada.position.x)
+	
+	if sprite_node.flip_h: # Si el Sprite mira a la IZQUIERDA
+		pivote_espada.scale.x = -1 # Volteamos espada
+		pivote_espada.position.x = -distancia_mano # Movemos pivote a la izq
+	else: # Si el Sprite mira a la DERECHA
+		pivote_espada.scale.x = 1 # Espada normal
+		pivote_espada.position.x = distancia_mano # Movemos pivote a la der
 
-	# --- NUEVO: ATAQUE ---
-	# Presiona ESPACIO o ENTER (ui_accept) para atacar
+	# --- ATAQUE ---
 	if Input.is_action_just_pressed("ui_accept") and not atacando:
 		realizar_ataque()
 
@@ -123,6 +122,8 @@ func _physics_process(delta):
 				else: 
 					velocity.y = WALL_JUMP_VERTICAL_FORCE
 					velocity.x = -wall_side * WALL_JUMP_HORIZONTAL_FORCE
+					# Nota: El flip del sprite ya se manejó arriba, no es necesario repetirlo aquí
+					# pero lo dejamos por seguridad en el salto de pared
 					if sprite_node: sprite_node.flip_h = (-wall_side == -1) 
 
 				is_wall_sliding = false 
@@ -135,7 +136,7 @@ func _physics_process(delta):
 	if not is_wall_kicking:
 		if direction_x_input != 0:
 			velocity.x = direction_x_input * SPEED
-			if sprite_node: sprite_node.flip_h = direction_x_input < 0 
+			# El flip del sprite ya se manejó arriba
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED * delta * 5)
 	
@@ -159,21 +160,22 @@ func _physics_process(delta):
 
 func realizar_ataque():
 	atacando = true
-	
-	# 1. Hacemos visible la espada y activamos colisión
 	sprite_espada.visible = true
 	colision_espada.disabled = false
 	
-	# 2. Esperamos 0.3 segundos (tiempo del golpe)
 	await get_tree().create_timer(0.3).timeout
 	
-	# 3. Ocultamos y desactivamos
 	sprite_espada.visible = false
 	colision_espada.disabled = true
 	atacando = false
 
-# Esta función se ejecuta automáticamente cuando el AreaEspada toca algo
 func _on_espada_impacto(body):
-	# Si tocamos un cuerpo que tiene la función "morir" (el fantasma)
-	if body.has_method("morir"):
+	if body == self: return 
+
+	# 1. Intentamos hacer daño (Sistema de Vida)
+	if body.has_method("recibir_dano"):
+		body.recibir_dano()
+		
+	# 2. Soporte antiguo (por si acaso quedó algún script viejo)
+	elif body.has_method("morir"):
 		body.morir()

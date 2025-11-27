@@ -220,21 +220,21 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_44fmi"]
-size = Vector2(4, 7)
+size = Vector2(4.046875, 6.875)
 
 [node name="jugador" type="CharacterBody2D"]
 script = ExtResource("1_7ii8e")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(575, 328)
+position = Vector2(-2, -313)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(584, 632)
+position = Vector2(-1, -8)
 texture = ExtResource("1_easq3")
 hframes = 11
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(585, 636)
+position = Vector2(0, -4)
 shape = SubResource("CapsuleShape2D_7ii8e")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -243,25 +243,29 @@ libraries = {
 }
 
 [node name="pared_derecha" type="RayCast2D" parent="."]
-position = Vector2(588, 641)
+position = Vector2(3, 1)
 target_position = Vector2(27, 0)
 
 [node name="pared_izquierda" type="RayCast2D" parent="."]
-position = Vector2(585, 641)
+position = Vector2(0, 1)
 target_position = Vector2(-31, 0)
 
 [node name="PivoteEspada" type="Node2D" parent="."]
 
 [node name="AreaEspada" type="Area2D" parent="PivoteEspada"]
-position = Vector2(566, 323)
+collision_layer = 7
+collision_mask = 7
 
 [node name="SpriteEspada" type="Sprite2D" parent="PivoteEspada/AreaEspada"]
 z_index = 5
-position = Vector2(28, 314)
+position = Vector2(9, -3)
 scale = Vector2(0.7, 0.58035815)
 texture = ExtResource("6_bci0v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PivoteEspada/AreaEspada"]
-position = Vector2(28, 312.5)
+position = Vector2(8.9765625, -5.4375)
 shape = SubResource("RectangleShape2D_44fmi")
 disabled = true
+one_way_collision_margin = 13.5
+
+[connection signal="body_entered" from="PivoteEspada/AreaEspada" to="." method="_on_espada_impacto"]
