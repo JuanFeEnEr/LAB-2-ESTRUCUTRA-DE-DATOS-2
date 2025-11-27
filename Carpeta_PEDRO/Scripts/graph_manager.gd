@@ -9,7 +9,7 @@ var all_edges: Array = []
 # --- TOPOLOGÍA (MAPA DE VECINOS) ---
 # Esto define estrictamente quién conecta con quién según tu dibujo.
 var allowed_connections = {
-	1: [2, 9],             # a -> b, i
+	0: [2, 9],             # a -> b, i
 	2: [1, 3, 9],          # b -> a, c, i
 	3: [2, 4, 8],          # c -> b, d, h
 	4: [3, 5, 6],          # d -> c, e, f
