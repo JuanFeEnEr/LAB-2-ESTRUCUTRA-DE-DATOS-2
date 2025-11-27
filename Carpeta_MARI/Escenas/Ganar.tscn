@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://b5p1k0dq4l0hb"]
-
-[ext_resource type="Texture2D" path="res://Carpeta_MARI/Mapas/Fondos/Victory.png" id="1_3vhc5"]
-
-[node name="Victory" type="Sprite2D"]
-position = Vector2(563, 356.5)
-scale = Vector2(0.896307, 0.960598)
-texture = ExtResource("1_3vhc5")
